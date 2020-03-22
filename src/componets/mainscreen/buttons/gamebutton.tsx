@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 
-require("./hbutton.scss");
+require("./gamebutton.scss");
 
 export interface IGameButtonProps {
   id: number
@@ -19,7 +19,7 @@ export const GameButton: React.FC<IGameButtonProps> = (
 
   return (
     <div className="button" onClick={handleClick}>
-        <div className={props.isSelected  ? "secondary-text-selected" : "secondary-text"}>Good choice</div>
+        <div className={props.isSelected  ? "secondary-text-selected" : "secondary-text"}>SELECTED</div>
         <p className={props.isSelected ? "a-selected" : "a"}>{props.text}</p>
     </div>
     );

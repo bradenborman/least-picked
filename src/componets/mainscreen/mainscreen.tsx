@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GameButton } from "./buttons/hbutton";
+import { GameButton } from "./buttons/gamebutton";
 import { IGameoption } from "../../models/GameOptions";
 
 require("./mainscreen.scss");
@@ -26,6 +26,19 @@ export const MainScreen: React.FC<IMainScreenProps> = (
             }
             setHasPicked(true)
             setData(dataCopy)
+        } else {
+            const dataCopy: Array<IGameoption> = []
+            for (var index = 0; index < data.length; index++) {
+                //remove already chosen
+                if (data[index].isSelected) {
+                    data[index].isSelected = false
+                }
+                if (data[index].id == id) {
+                    data[index].isSelected = !data[index].isSelected
+                }    
+                dataCopy.push(data[index])
+                setData(dataCopy)
+            }
         }
     }
 
@@ -37,11 +50,11 @@ export const MainScreen: React.FC<IMainScreenProps> = (
 
     const getHelpText = (): JSX.Element =>  {
         return (
-            <div>
+            <div className="helpTxt">
                 {hasPicked ?
-                    <p>Thank you for playing. You have already selcted today.</p> //<br />You may change.
+                    <p>Thank you for playing. You have already selcted today.<br /><br />You may change.</p>
                     :
-                    <p>Please Select an option for the day.</p>
+                    <p>Please select an option for the day.</p>
                 }
             </div>
         )

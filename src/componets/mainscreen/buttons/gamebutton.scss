@@ -1,13 +1,17 @@
-$delay-time: .80s;
+$delay-time: 1s;
 $btn-width: 300px;
 
+$first-layer-bgcolor: #b5b4b0;
+$deep-layer-bgcolor: white;
+
 .button {
+  background-color: $first-layer-bgcolor;
   display: inline-flex;
-  height: 80px;
+  height: 100px;
   width: $btn-width;
-  border: 2px solid #BFC0C0;
+  border: 2px solid black;
   margin: 20px 20px 20px 20px;
-  color: #BFC0C0;
+  color: black;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.2em;
@@ -18,10 +22,11 @@ $btn-width: 300px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 7px;
 
 
     .a {
-        color: #BFC0C0;
+      color: black;
         text-decoration: none;
         letter-spacing: 1px;
         position: relative;
@@ -30,20 +35,20 @@ $btn-width: 300px;
     }
 
     .a-selected {
-        color: #BFC0C0;
+      color: black;
         text-decoration: none;
         letter-spacing: 1px;
         position: relative;
         left: 0;
         transition: all $delay-time ease-Out;
-        left: 150px;
+        left: $btn-width;       
     }
 
 
     .secondary-text {
+        font-size: .7em;
         width: 100%;
-        height: 100%;
-        background: #BFC0C0;
+        height: 100%;    
         left: -$btn-width;
         position: absolute;
         padding: 0;
@@ -52,13 +57,13 @@ $btn-width: 300px;
         justify-content: center;
         transition: all $delay-time ease-Out;
         bottom: 0;
-        color: whitesmoke;
       }
 
       .secondary-text-selected {
         width: 100%;
         height: 100%;
-        background: #BFC0C0;
+        font-size: 1.2em;
+        background: $deep-layer-bgcolor;
         left: -$btn-width;
         position: absolute;
         padding: 0;
@@ -67,9 +72,17 @@ $btn-width: 300px;
         justify-content: center;
         transition: all $delay-time ease-Out;
         bottom: 0;
-        color: whitesmoke;
-        //added
+        color: black;
         left: 0;
+      }
+
+      .secondary-text-selected::after, .secondary-text::after {
+        content: "";
+        background-color: #41a72f;
+        width: 66%;
+        height: 2px;
+        position: absolute;
+        bottom: 25px;
       }
 
 }
