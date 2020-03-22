@@ -1,4 +1,6 @@
 import React from "react";
+import { MainScreen } from "./mainscreen/mainscreen";
+import { IGameoption } from "../models/GameOptions";
 
 require("./app.scss");
 
@@ -8,9 +10,15 @@ export const App: React.FC<IAppProps> = (
   props: IAppProps
 ) => {
 
+
+  const initData: Array<IGameoption> = [
+    { id: 1, text: "Option 1", isSelected: false },
+    { id: 2, text: "Option 2", isSelected: false },
+    { id: 3, text: "Option 3", isSelected: false}
+]
+
   return (
-      <div>
-          Test
-      </div>
+      <MainScreen intdata={initData} />
   );
+
 };

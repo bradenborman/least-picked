@@ -1,0 +1,75 @@
+$delay-time: .80s;
+$btn-width: 300px;
+
+.button {
+  display: inline-flex;
+  height: 80px;
+  width: $btn-width;
+  border: 2px solid #BFC0C0;
+  margin: 20px 20px 20px 20px;
+  color: #BFC0C0;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.2em;
+  letter-spacing: 1.5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+
+    .a {
+        color: #BFC0C0;
+        text-decoration: none;
+        letter-spacing: 1px;
+        position: relative;
+        left: 0;
+        transition: all $delay-time ease-Out;
+    }
+
+    .a-selected {
+        color: #BFC0C0;
+        text-decoration: none;
+        letter-spacing: 1px;
+        position: relative;
+        left: 0;
+        transition: all $delay-time ease-Out;
+        left: 150px;
+    }
+
+
+    .secondary-text {
+        width: 100%;
+        height: 100%;
+        background: #BFC0C0;
+        left: -$btn-width;
+        position: absolute;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all $delay-time ease-Out;
+        bottom: 0;
+        color: whitesmoke;
+      }
+
+      .secondary-text-selected {
+        width: 100%;
+        height: 100%;
+        background: #BFC0C0;
+        left: -$btn-width;
+        position: absolute;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all $delay-time ease-Out;
+        bottom: 0;
+        color: whitesmoke;
+        //added
+        left: 0;
+      }
+
+}
