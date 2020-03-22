@@ -1,0 +1,45 @@
+$annimation-length: .8s;
+
+header {
+    padding: 40px;
+    background-color: #7cd56c;
+    border-bottom: 2px solid black;
+    text-align: left;
+   // background-image: url("https://st2.depositphotos.com/1502315/8993/i/950/depositphotos_89939644-stock-photo-dark-grey-texture-may-used.jpg");
+
+    .header-wrapper {
+        position: absolute;
+        font-size: 2em;
+        font-weight: bold;
+        animation: $annimation-length ease-out 0s 1 slideInFromLeft;
+        background-color: whitesmoke;
+        display: inline;
+        padding: 18px;
+        padding-bottom: 30px;
+        border-radius: 14px;
+        border: 1px solid black;
+    }
+    .header-wrapper::after {
+        content: "";
+        background-color: #8d49f3;
+        width: 50%;
+        height: 2px;
+        position: absolute;
+        bottom: 25px;
+        z-index: 3;
+        left: 25%;
+    }
+
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    66% {
+        transform: translateX(7%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

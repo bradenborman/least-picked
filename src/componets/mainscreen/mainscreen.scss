@@ -1,8 +1,12 @@
 .main-screen {
-    margin-top: 150px;
-
-    .helpTxt {
-        margin-top: 175px;
-        font-size: 1.6em;
+    
+    .main-screen-wrapper {
+        margin-top: 100px;
+        background-color: whitesmoke;
+        display: inline-block;
+        padding: 20px 20px 55px 20px;
+        border-radius: 14px;
+        border: 1px solid black;
     }
+
 }

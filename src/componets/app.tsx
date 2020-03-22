@@ -1,6 +1,9 @@
 import React from "react";
 import { MainScreen } from "./mainscreen/mainscreen";
 import { IGameoption } from "../models/GameOptions";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Header } from "./header/header";
+
 
 require("./app.scss");
 
@@ -18,7 +21,10 @@ export const App: React.FC<IAppProps> = (
 ]
 
   return (
+    <div>
+      <Header />
       <MainScreen intdata={initData} />
+    </div>
   );
 
 };

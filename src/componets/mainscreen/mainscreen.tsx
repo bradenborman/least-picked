@@ -47,24 +47,12 @@ export const MainScreen: React.FC<IMainScreenProps> = (
             return (<GameButton text={option.text} isSelected={option.isSelected} id={option.id} handleChange={handleChange} />)
         });   
     }
-
-    const getHelpText = (): JSX.Element =>  {
-        return (
-            <div className="helpTxt">
-                {hasPicked ?
-                    <p>Thank you for playing. You have already selcted today.<br /><br />You may change.</p>
-                    :
-                    <p>Please select an option for the day.</p>
-                }
-            </div>
-        )
-    }
-    
-
-return (
+ 
+    return (
     <div className="main-screen">
-        {getOptions()}
-        {getHelpText()}
+        <div className="main-screen-wrapper">
+          {getOptions()}
+        </div>
     </div>
 );
     

@@ -1,7 +1,7 @@
-$delay-time: 1s;
+$delay-time: .45s;
 $btn-width: 300px;
 
-$first-layer-bgcolor: #b5b4b0;
+$first-layer-bgcolor: #7cd56c;
 $deep-layer-bgcolor: white;
 
 .button {
@@ -78,7 +78,7 @@ $deep-layer-bgcolor: white;
 
       .secondary-text-selected::after, .secondary-text::after {
         content: "";
-        background-color: #41a72f;
+        background-color: #8d49f3;
         width: 66%;
         height: 2px;
         position: absolute;
