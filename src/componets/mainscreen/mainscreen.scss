@@ -1,12 +1,18 @@
 .main-screen {
     
     .main-screen-wrapper {
-        margin-top: 100px;
         background-color: whitesmoke;
         display: inline-block;
         padding: 20px 20px 55px 20px;
         border-radius: 14px;
         border: 1px solid black;
+        margin: 130px 20px 20px 20px;
+
+        .hint {
+            margin-top: 30px;
+            font-size: 1em;
+        }
+
     }
 
 }

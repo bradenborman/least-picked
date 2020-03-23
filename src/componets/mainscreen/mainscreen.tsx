@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { GameButton } from "./buttons/gamebutton";
 import { IGameoption } from "../../models/GameOptions";
+import { AppInfo } from "../appinfo/appinfo";
+import { Rules } from "../rules/rules";
 
 require("./mainscreen.scss");
 
@@ -51,7 +53,9 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     return (
     <div className="main-screen">
         <div className="main-screen-wrapper">
-          {getOptions()}
+                <AppInfo loggedIn="Braden Borman" userspoints={30} />
+                {getOptions()} 
+                <p className="hint">* The current leader chose <b>option 3</b> for today's selection.</p>
         </div>
     </div>
 );

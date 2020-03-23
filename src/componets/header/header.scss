@@ -1,9 +1,9 @@
 $annimation-length: .8s;
 
 header {
-    padding: 40px;
+    padding: 40px 40px 40px 60px;
     background-color: #7cd56c;
-    border-bottom: 2px solid black;
+    border-bottom: 5px solid black;
     text-align: left;
    // background-image: url("https://st2.depositphotos.com/1502315/8993/i/950/depositphotos_89939644-stock-photo-dark-grey-texture-may-used.jpg");
 
@@ -17,7 +17,7 @@ header {
         padding: 18px;
         padding-bottom: 30px;
         border-radius: 14px;
-        border: 1px solid black;
+        border: 3px solid black;       
     }
     .header-wrapper::after {
         content: "";
@@ -28,6 +28,20 @@ header {
         bottom: 25px;
         z-index: 3;
         left: 25%;
+        transition: all .2s ease-Out;
+        animation: 1s ease-out 0s 1 slideInFromLeftSlower;
+    }
+
+    .header-wrapper:hover::after {
+        content: "";
+        background-color: #8d49f3;
+        width: 72%;
+        height: 3px;
+        position: absolute;
+        bottom: 25px;
+        z-index: 3;
+        left: 14%;
+        animation: 1s ease-out 0s 1 slideInFromLeftSlower;
     }
 
 }
@@ -41,5 +55,15 @@ header {
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeftSlower {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: 25%;
     }
 }
