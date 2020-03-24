@@ -45,8 +45,8 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     }
 
     const getOptions = (): JSX.Element[] | JSX.Element =>  {
-        return data.map((option: IGameoption)=>{   
-            return (<GameButton text={option.text} isSelected={option.isSelected} id={option.id} handleChange={handleChange} />)
+        return data.map((option: IGameoption, index: number)=>{   
+            return (<GameButton text={option.text} isSelected={option.isSelected} id={option.id} handleChange={handleChange} key={index} />)
         });   
     }
  

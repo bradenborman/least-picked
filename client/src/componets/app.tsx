@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  BrowserRouter as ReactRouter,
+  Route as ReactRoute
+} from "react-router-dom";
+
 import { MainScreen } from "./mainscreen/mainscreen";
 import { IGameoption } from "../models/GameOptions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from "./header/header";
+import { Rules } from "./rules/rules";
 
 
 require("./app.scss");
@@ -20,11 +26,24 @@ export const App: React.FC<IAppProps> = (
     { id: 3, text: "Option 3", isSelected: false }
 ]
 
-  return (
-    <div>
-      <Header />
-      <MainScreen intdata={initData} />
-    </div>
+  
+const getPlayScreen = (): JSX.Element => {
+  return <MainScreen intdata={initData} />
+};
+  
+const getRules = (): JSX.Element => {
+  return <Rules />
+};
+  
+  return (    
+    <ReactRouter>
+        <Header />
+        <ReactRoute
+          exact
+          path={["/", "/play"]}
+          component={getPlayScreen} />       
+        <ReactRoute path="/rules" component={getRules} />
+    </ReactRouter>
   );
 
 };

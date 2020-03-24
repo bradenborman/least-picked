@@ -1,0 +1,9 @@
+{
+    "rules" : [
+        "1) Login in with facebook or gmail!",
+        "2) Click either \"Option 1\", \"Option 2\", or \"Option 3\".",
+        "3) Come back tomorrow to see if you gained a point.",
+        "4) The person with the highest score after the season's end will be declared the winner!",
+        "5) To gain a point, you have to have clicked the least selected option among all those playing."
+    ]
+}
