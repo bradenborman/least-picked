@@ -25,3 +25,48 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+task copyClient(dependsOn: ":client:clientBuild") {
+
+	doFirst{
+		delete "src/main/resources/static"
+		delete "src/main/resources/templates"
+	}
+
+	doLast {
+		copy {
+			from new File(project(":client").getProjectDir(), "build")
+			into "${buildDir}/resources/main/static"
+		}
+		copy {
+			from new File(project(":client").getProjectDir(), "build/index.html")
+			into "${buildDir}/resources/main/templates"
+		}
+		copy {
+			from new File(project(":client").getProjectDir(), "build/error.html")
+			into "${buildDir}/resources/templates"
+		}
+		copy {
+			from new File(project(":client").getProjectDir(), "build")
+			into "src/main/resources/static"
+		}
+		copy {
+			from new File(project(":client").getProjectDir(), "build/index.html")
+			into "src/main/resources/templates"
+		}
+		copy {
+			from new File(project(":client").getProjectDir(), "build/error.html")
+			into "src/main/resources/templates"
+		}
+	}
+}
+
+task finalizeBuild(type: Copy, dependsOn: build) {
+	from "${buildDir}/libs/server-${version}.war"
+	into "${buildDir}/libs"
+	rename "server-${version}.war", "least-picked.war"
+}
+
+bootWar.dependsOn(copyClient)
+clean.dependsOn(":client:clientClean")
+build.finalizedBy(finalizeBuild)

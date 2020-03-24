@@ -6,7 +6,7 @@ Users have 3 buttons hit to chose from once per day. If they are part of the gro
 To run: 
 >npm install 
 <br/>
-npm run start
+>npm run start
 
 ___
 **For Developer:**
