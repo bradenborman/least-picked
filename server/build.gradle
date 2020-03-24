@@ -70,3 +70,6 @@ task finalizeBuild(type: Copy, dependsOn: build) {
 bootWar.dependsOn(copyClient)
 clean.dependsOn(":client:clientClean")
 build.finalizedBy(finalizeBuild)
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
