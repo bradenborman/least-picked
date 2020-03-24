@@ -8,7 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class ViewController {
 
-    @GetMapping("/")
+    @GetMapping({
+            "/",
+            "/rules",
+            "/leaderboard",
+            "/play",
+            "rules",
+            "leaderboard",
+            "play"
+    })
     public String getView() {
         return "index";
     }
