@@ -15,3 +15,14 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: none
+
+#https://developers.facebook.com/apps/ for facebook
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 528552864734150
+            client-secret: ae5c907268c4c411214b3a8b3487e14a
+            scope:
+              - email
