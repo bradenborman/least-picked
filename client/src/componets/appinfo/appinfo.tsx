@@ -2,7 +2,7 @@ import React from "react";
 require("./appinfo.scss");
 
 export interface IAppInfoProps {
-    loggedIn: string;
+    loggedIn?: string;
     userspoints: number;
 }
 
