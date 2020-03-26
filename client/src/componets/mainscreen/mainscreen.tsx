@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { GameButton } from "./buttons/gamebutton";
 import { IGameoption } from "../../models/GameOptions";
 import { AppInfo } from "../appinfo/appinfo";
-import { Rules } from "../rules/rules";
 
 require("./mainscreen.scss");
 
@@ -18,6 +17,20 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     const [data, setData] = useState<Array<IGameoption>>(props.intdata)
     const [hasPicked, setHasPicked] = useState<boolean>(false)
 
+
+    useEffect(() => {
+        hangleSetDataAfterChangedPage()
+      }, []);
+
+    
+    const hangleSetDataAfterChangedPage = ():void => {
+        for (var index = 0; index < data.length; index++) {
+            if (data[index].isSelected) {
+                setHasPicked(true)
+            }
+        }
+    }
+    
     const handleChange = (id: number) => {
         if (!hasPicked) {
             const dataCopy: Array<IGameoption> = []
@@ -51,6 +64,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
         });   
     }
  
+
     return (
     <div className="main-screen">
         <div className="main-screen-wrapper">
@@ -60,5 +74,5 @@ export const MainScreen: React.FC<IMainScreenProps> = (
         </div>
     </div>
 );
-    
+        
 };

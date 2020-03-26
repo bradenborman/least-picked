@@ -21,7 +21,7 @@ export const App: React.FC<IAppProps> = (
 ) => {
 
   const
-    [user, setUser] = useState<string>(""),
+    [user, setUser] = useState<string>("Loading..."),
     [fetching, setFetching] = useState<boolean>(true),
     [fetchError, setFetchError] = useState<boolean>(false);
   
@@ -48,6 +48,7 @@ const fetchData = async () => {
   } catch (err) {
     console.error(err);
     setFetching(false);
+    setUser("Error loading data")
     setFetchError(true);
   }
 };  
