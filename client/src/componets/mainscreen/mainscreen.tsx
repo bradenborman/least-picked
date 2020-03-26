@@ -7,7 +7,8 @@ import { Rules } from "../rules/rules";
 require("./mainscreen.scss");
 
 export interface IMainScreenProps {
-    intdata: Array<IGameoption>
+    user: string;
+    intdata: Array<IGameoption>;
 }
 
 export const MainScreen: React.FC<IMainScreenProps> = (
@@ -53,7 +54,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     return (
     <div className="main-screen">
         <div className="main-screen-wrapper">
-                <AppInfo loggedIn="Braden Borman" userspoints={30} />
+                <AppInfo loggedIn={props.user} userspoints={30} />
                 {getOptions()} 
                 <p className="hint">* The current leader chose <b>option 3</b> for today's selection.</p>
         </div>
