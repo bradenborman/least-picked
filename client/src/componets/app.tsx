@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from "./header/header";
 import { Rules } from "./rules/rules";
 import { AppDataResponse } from "../models/responses/appdata";
+import { Leaderboard } from "./leaderboard/leaderboard";
 
 require("./app.scss");
 
@@ -49,6 +50,10 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     return <Rules />;
   };
 
+  const getLeaderBoard = (): JSX.Element => {
+    return <Leaderboard />;
+  };
+  
   const handleFetch = (): JSX.Element => {
     if (fetching) return <Spinner className="loading" animation="grow" />;
     else return <p className="error">Error Fetching data</p>;
@@ -61,7 +66,8 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
       ) : (
         <ReactRouter>
           <Header />
-          <ReactRoute exact path={["/", "/play"]} component={getPlayScreen} />
+            <ReactRoute exact path={["/", "/play"]} component={getPlayScreen} />
+            <ReactRoute exact path={["/leaderboard"]} component={getLeaderBoard} />
           <ReactRoute path="/rules" component={getRules} />
         </ReactRouter>
       )}

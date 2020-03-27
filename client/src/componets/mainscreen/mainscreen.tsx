@@ -108,7 +108,6 @@ export const MainScreen: React.FC<IMainScreenProps> = (
 
   return (
     <div className="main-screen">
-      <SeasonDetails daysTilNextSeason={props.appdata?.daysUntilNextSeason} currentSeason={props.appdata?.activeSeason} />
       <div className="main-screen-wrapper">
         {props.appdata?.usersFirstTime ? (
           <p className="firstTimeTag">Welcome to the game</p>

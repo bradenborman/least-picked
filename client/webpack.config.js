@@ -43,17 +43,17 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
       filename: "./index.html"
-    })///,
-    // new CopyWebpackPlugin([
-    //   { from: "src/img", to: "img" },
-    //   { from: "src/img/shield-logo.png", to: "img/favicon.png" },
-    //   { from: "src/lib/fonts", to: "fonts" },
-    //   { from: "src/lib/webfonts", to: "webfonts" },
-    //   {
-    //     from: "src/lib/font-awesome-v5.12.1.css",
-    //     to: "lib/font-awesome-v5.12.1.css"
-    //   }
-    // ])
+    }),
+    new CopyWebpackPlugin([
+      { from: "src/img", to: "img" }
+      // { from: "src/img/shield-logo.png", to: "img/favicon.png" },
+      // { from: "src/lib/fonts", to: "fonts" },
+      // { from: "src/lib/webfonts", to: "webfonts" },
+      // {
+      //   from: "src/lib/font-awesome-v5.12.1.css",
+      //   to: "lib/font-awesome-v5.12.1.css"
+      // }
+    ])
   ]
 };
 
