@@ -4,6 +4,7 @@ import { GameButton } from "./buttons/gamebutton";
 import { IGameoption } from "../../models/GameOptions";
 import { AppInfo } from "../appinfo/appinfo";
 import { AppDataResponse } from "../../models/responses/appdata";
+import axios from "axios";
 
 require("./mainscreen.scss");
 
@@ -17,24 +18,50 @@ export const MainScreen: React.FC<IMainScreenProps> = (
 
     const [data, setData] = useState<Array<IGameoption> | undefined>(props.appdata?.options)
     const [hasPicked, setHasPicked] = useState<boolean>(false)
-
+    const [activeId, setActiveId] = useState<number>()
+    const [prevActive, setPrevActive] = useState<number>()
 
     useEffect(() => {
         hangleSetDataAfterChangedPage()
     }, []);
 
+    useEffect(() => {
+        if(activeId != null && prevActive != null && activeId != prevActive)
+            updateSelection()
+    }, [activeId]);
     
+
+    const updateSelection = async () => {        
+        try {
+            const res: any = await axios.post(`/api/updateSelected`,
+                {
+                    userEmail: props.appdata?.userEmail,
+                    newSelected: activeId
+                }
+            );
+            console.log(res)
+        } catch (err) {
+          console.error(err);
+        }     
+    }
+
     const hangleSetDataAfterChangedPage = (): void => {
         if(data != null)
             for (var index = 0; index < data.length; index++) {
-                if (data[index].selected) {
+                if (data[index].selected) {         
+                    setActiveId(index + 1)
+                    setPrevActive(index + 1)
                     setHasPicked(true)
                 }
             }
     }
     
-    const handleChange = (id: number) => {
+    const handleChange = (id: number) => {       
         if (data != null) {
+
+            setPrevActive(activeId)
+            setActiveId(id)
+
             if (!hasPicked) {
                 const dataCopy: Array<IGameoption> = []
                 for (var index = 0; index < data.length; index++) {
@@ -76,7 +103,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     return (      
     <div className="main-screen">
             <div className="main-screen-wrapper">
-                <AppInfo loggedIn={props.appdata?.userEmail} userspoints={30} />
+                <AppInfo appdata={props.appdata}/>
                 {getOptions()} 
                 <p className="hint">* The current leader chose <b>option 3</b> for today's selection.</p>
         </div>

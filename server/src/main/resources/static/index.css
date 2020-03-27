@@ -15,5 +15,5 @@ header{padding:40px 40px 40px 60px;background-color:#7cd56c;border-bottom:5px so
 
 .rules{margin-top:70px}.rules .rules-paper{max-width:850px;margin:auto;padding:35px}.rules .rules-paper .rules-heading{font-size:2.2em}.rules .rules-paper .rules-txt{text-align:left;font-size:1.2em}
 
-body{background-color:#d4dbd2;text-align:center;font-family:'Happy Monkey'}body p{font-size:1.6em}
+body{background-color:#d4dbd2;text-align:center;font-family:'Happy Monkey'}body p{font-size:1.6em}body .loading{margin-top:200px;font-size:2em}body p.error{margin-top:300px;font-size:2em;color:red}
 
