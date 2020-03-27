@@ -1,18 +1,22 @@
 .main-screen {
-    
-    .main-screen-wrapper {
-        background-color: whitesmoke;
-        display: inline-block;
-        padding: 20px 20px 55px 20px;
-        border-radius: 14px;
-        border: 1px solid black;
-        margin: 130px 20px 20px 20px;
+  .main-screen-wrapper {
+    background-color: whitesmoke;
+    display: inline-block;
+    padding: 20px 20px 55px 20px;
+    border-radius: 14px;
+    border: 1px solid black;
+    margin: 130px 20px 20px 20px;
 
-        .hint {
-            margin-top: 30px;
-            font-size: 1em;
-        }
-
+    .firstTimeTag {
+      margin: 20px;
+      padding: 20px;
+      background-color: wheat;
+      font-size: 1.3em;
     }
 
+    .hint {
+      margin-top: 30px;
+      font-size: 1em;
+    }
+  }
 }

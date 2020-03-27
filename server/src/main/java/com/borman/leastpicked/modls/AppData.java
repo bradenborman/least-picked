@@ -7,6 +7,7 @@ public class AppData {
     private String userEmail;
     private String userName;
     private int userScore;
+    private boolean usersFirstTime;
     private List<GameOption> options;
 
     public String getUserEmail() {
@@ -31,6 +32,14 @@ public class AppData {
 
     public void setUserScore(int userScore) {
         this.userScore = userScore;
+    }
+
+    public boolean isUsersFirstTime() {
+        return usersFirstTime;
+    }
+
+    public void setUsersFirstTime(boolean usersFirstTime) {
+        this.usersFirstTime = usersFirstTime;
     }
 
     public List<GameOption> getOptions() {

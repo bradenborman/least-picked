@@ -27,20 +27,15 @@ public class ApiController {
     UserService userService;
 
 
-    @GetMapping("/user")
+    @GetMapping("/app-data")
     public ResponseEntity<AppData> getAppData(@AuthenticationPrincipal OAuth2User principal) throws InterruptedException {
         Thread.sleep(750);
         AppData appData = new AppData();
         appData.setUserName(principal.getAttribute("name"));
         appData.setUserEmail(principal.getAttribute("email"));
-
-        Random random = new Random();
-        appData.setUserScore(random.nextInt(35));
-
+        appData.setUsersFirstTime(userService.insertUserIfNessary(appData.getUserEmail()));
+        appData.setUserScore(new Random().nextInt(35));
         appData.setOptions(getGameOptions());
-
-        userService.insertUserIfNessary(appData.getUserEmail());
-
         return ResponseEntity.ok(appData);
     }
 
@@ -55,9 +50,9 @@ public class ApiController {
     }
 
     private List<GameOption> getGameOptions() {
-        GameOption gameOption1 = new GameOption(1, "Door 1", false);
-        GameOption gameOption2 = new GameOption(2, "Door 2", true);
-        GameOption gameOption3 = new GameOption(3, "Door 3", false);
+        GameOption gameOption1 = new GameOption(1, "Option 1", false);
+        GameOption gameOption2 = new GameOption(2, "Option 2", true);
+        GameOption gameOption3 = new GameOption(3, "Option 3", false);
         return Arrays.asList(gameOption1, gameOption2, gameOption3);
     }
 

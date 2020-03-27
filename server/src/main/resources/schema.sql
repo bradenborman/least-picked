@@ -1,7 +1,7 @@
 create table players
 (
    player_id int NOT NULL AUTO_INCREMENT,
-   username varchar(75) not null,
+   email varchar(75) not null,
    primary key(player_id)
 );
 
