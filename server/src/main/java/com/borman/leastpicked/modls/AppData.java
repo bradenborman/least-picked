@@ -9,6 +9,7 @@ public class AppData {
     private int userScore;
     private boolean usersFirstTime;
     private List<GameOption> options;
+    private int activeOption = -1;
 
     public String getUserEmail() {
         return userEmail;
@@ -48,5 +49,14 @@ public class AppData {
 
     public void setOptions(List<GameOption> options) {
         this.options = options;
+    }
+
+
+    public int getActiveOption() {
+        return activeOption;
+    }
+
+    public void setActiveOption(int activeOption) {
+        this.activeOption = activeOption;
     }
 }

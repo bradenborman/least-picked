@@ -6,4 +6,5 @@ export interface AppDataResponse {
   options: Array<IGameoption>;
   userScore: number;
   usersFirstTime: boolean;
+  activeOption: number;
 }

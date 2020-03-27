@@ -9,7 +9,7 @@ create table pick_history
 (
     pick_id int NOT NULL AUTO_INCREMENT,
     player_id int NOT NULL,
-    picked_day int NOT NULL,
+    picked_day varchar(10) NOT NULL,
     option_selected int NOT NULL,
     primary key(pick_id),
     FOREIGN KEY (player_id) REFERENCES players(player_id)

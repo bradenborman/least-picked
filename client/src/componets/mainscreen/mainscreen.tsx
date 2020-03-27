@@ -19,11 +19,8 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     props.appdata?.options
   );
   const [hasPicked, setHasPicked] = useState<boolean>(false);
-  const [activeId, setActiveId] = useState<number>();
-  const [prevActive, setPrevActive] = useState<number>();
-  const [usersFirstTime, setUsersFirstTime] = useState<boolean | undefined>(
-    props.appdata?.usersFirstTime
-  );
+  const [activeId, setActiveId] = useState<number | undefined>(props.appdata?.activeOption);
+  const [prevActive, setPrevActive] = useState<number | undefined>(props.appdata?.activeOption);
 
   useEffect(() => {
     hangleSetDataAfterChangedPage();
@@ -111,7 +108,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
   return (
     <div className="main-screen">
       <div className="main-screen-wrapper">
-        {usersFirstTime ? (
+        {props.appdata?.usersFirstTime ? (
           <p className="firstTimeTag">Welcome to the game</p>
         ) : null}
         <AppInfo appdata={props.appdata} />

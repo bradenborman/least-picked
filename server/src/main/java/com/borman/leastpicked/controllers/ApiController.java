@@ -35,13 +35,10 @@ public class ApiController {
         appData.setUserEmail(principal.getAttribute("email"));
         appData.setUsersFirstTime(userService.insertUserIfNessary(appData.getUserEmail()));
         appData.setUserScore(new Random().nextInt(35));
-        appData.setOptions(getGameOptions());
-        return ResponseEntity.ok(appData);
-    }
 
-    @PostMapping("/submit-option")
-    public ResponseEntity<String> submitPick(@AuthenticationPrincipal OAuth2User principal) {
-        return ResponseEntity.ok("");
+        getGameOptions(appData);
+
+        return ResponseEntity.ok(appData);
     }
 
     @PostMapping("/updateSelected")
@@ -49,11 +46,23 @@ public class ApiController {
         return selectionService.updateSelection(updateSelectionRequest);
     }
 
-    private List<GameOption> getGameOptions() {
+    private void getGameOptions(AppData appData) {
         GameOption gameOption1 = new GameOption(1, "Option 1", false);
-        GameOption gameOption2 = new GameOption(2, "Option 2", true);
+        GameOption gameOption2 = new GameOption(2, "Option 2", false);
         GameOption gameOption3 = new GameOption(3, "Option 3", false);
-        return Arrays.asList(gameOption1, gameOption2, gameOption3);
+
+        String picked = selectionService.getUsersSelectionToday(appData.getUserEmail());
+        List<GameOption> gameOptionsList = Arrays.asList(gameOption1, gameOption2, gameOption3);
+        if(picked != null) {
+            gameOptionsList.forEach(gameOption -> {
+                if(String.valueOf(gameOption.getId()).equals(picked))
+                    gameOption.setSelected(true);
+                    appData.setActiveOption(gameOption.getId());
+            });
+        }
+
+        appData.setOptions(gameOptionsList);
+
     }
 
 }
