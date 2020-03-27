@@ -5,6 +5,7 @@ import { IGameoption } from "../../models/GameOptions";
 import { AppInfo } from "../appinfo/appinfo";
 import { AppDataResponse } from "../../models/responses/appdata";
 import axios from "axios";
+import { SeasonDetails } from "./seasondetails/seasondetails";
 
 require("./mainscreen.scss");
 
@@ -107,6 +108,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
 
   return (
     <div className="main-screen">
+      <SeasonDetails daysTilNextSeason={props.appdata?.daysUntilNextSeason} currentSeason={props.appdata?.activeSeason} />
       <div className="main-screen-wrapper">
         {props.appdata?.usersFirstTime ? (
           <p className="firstTimeTag">Welcome to the game</p>

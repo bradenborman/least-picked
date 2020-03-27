@@ -2,7 +2,7 @@
 
 .app-info{text-align:left}.app-info .detail{color:#8d49f3;font-weight:bold}
 
-.main-screen .main-screen-wrapper{background-color:whitesmoke;display:inline-block;padding:20px 20px 55px 20px;border-radius:14px;border:1px solid black;margin:130px 20px 20px 20px}.main-screen .main-screen-wrapper .hint{margin-top:30px;font-size:1em}
+.main-screen .main-screen-wrapper{background-color:whitesmoke;display:inline-block;padding:20px 20px 55px 20px;border-radius:14px;border:1px solid black;margin:130px 20px 20px 20px}.main-screen .main-screen-wrapper .firstTimeTag{margin:20px;padding:20px;background-color:wheat;font-size:1.3em}.main-screen .main-screen-wrapper .hint{margin-top:30px;font-size:1em}
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)

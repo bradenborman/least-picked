@@ -11,6 +11,10 @@ public class AppData {
     private List<GameOption> options;
     private int activeOption = -1;
 
+    private String activeSeason;
+    private int daysUntilNextSeason;
+    private int highScore;
+
     public String getUserEmail() {
         return userEmail;
     }
@@ -58,5 +62,29 @@ public class AppData {
 
     public void setActiveOption(int activeOption) {
         this.activeOption = activeOption;
+    }
+
+    public String getActiveSeason() {
+        return activeSeason;
+    }
+
+    public void setActiveSeason(String activeSeason) {
+        this.activeSeason = activeSeason;
+    }
+
+    public int getDaysUntilNextSeason() {
+        return daysUntilNextSeason;
+    }
+
+    public void setDaysUntilNextSeason(int daysUntilNextSeason) {
+        this.daysUntilNextSeason = daysUntilNextSeason;
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
     }
 }
