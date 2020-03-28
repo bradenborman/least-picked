@@ -1,0 +1,77 @@
+.clipboard-header {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #B1855E;
+    padding: 20px;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    border-top: 2px solid gray;
+    border-radius: 200px 200px 0px 0px;
+    position: relative;
+
+    .h2-wrapper {
+        background-color: gray;
+        padding: 8px 6px 6px 6px;
+        display: inline-block;
+        border-radius: 20px;
+        border-top: 3px solid black;
+        box-shadow: 5px 3px lightgray;
+
+        h2 {
+            background-color: whitesmoke;
+            padding: 10px 20px 10px 20px;
+            display: inline-block;
+            border-radius: 20px;
+            border-bottom: 3px solid black;
+        }
+    }
+
+    .h2-wrapper::after {
+        content: "";
+        clip-path: polygon(24% 17%, 40% 0, 62% 0, 78% 17%, 98% 28%, 100% 50%, 84% 54%, 62% 57%, 40% 57%, 18% 54%, 0 50%, 2% 30%);
+        position: absolute;
+        background-color: gray;
+        height: 100px;
+        width: 33%;
+        bottom: -75px;
+        left: 33%;
+    }
+
+}
+
+.clipboard-divider {
+    height: 2px;
+    background-color: gray;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.clipboard {
+    background-color: #B1855E;
+    max-width: 800px;
+    margin: auto;
+    min-height: 800px;
+
+    .clipboard-paper {
+        margin-top: 10px;
+        background-color: white;
+        margin: auto;
+        width: 80%;
+        min-height: 800px;
+        padding:30px;
+        padding-top: 65px;
+        text-align: left;
+        border-radius: 2px;
+    }
+
+}
+
+.clipboard-footer {
+    background-color: #B1855E;
+    max-width: 800px;
+    margin: auto;
+    height: 100px;
+    margin-bottom: 200px;
+    border-radius: 0px 0px 30px 30px;
+}

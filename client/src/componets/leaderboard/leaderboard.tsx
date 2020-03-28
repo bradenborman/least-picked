@@ -1,4 +1,5 @@
 import React from "react";
+import { Clipboard } from "../clipboard/clipboard";
 
 require("./leaderboard.scss");
 
@@ -10,20 +11,35 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
   props: ILeaderboardProps
 ) => {
 
+
+  const names: Array<string> = ["Bront Thoenen", "Cory Loeffelman", "Cori Mead", "Jacob Meller", "Ken Little", "Rob Rush", "Pat Steuber", "So Crates", "Richard Hawkins"]
+
+  const getDots = (length: number) => {
+    if(length > 21)
+      return <span>................</span>
+    else if (length > 17)
+      return <span>.........................</span>
+    else if(length >= 12)
+      return <span>.........................................</span>
+    else 
+      return <span>....................................................</span>
+  }
+ 
+  const createLeaderboardRows = (): JSX.Element[] | JSX.Element => {
+    return names.map((option: string, index: number) => {
+      return (
+        <p className="score">{index + 1}) {option}{getDots(option.length)}<span className="score">29</span></p>
+      );
+    });
+  }
+
   return (
     <div>
-      <div className="leader-board-header">
-        <div className="h2-wrapper">
-            <h2>Leaderboard</h2>
+      <Clipboard>
+        <div className="scores">
+          {createLeaderboardRows()}
         </div>
-      </div>    
-      <div className="clipboard">
-      <div className="clipboard-divider"></div>
-        <div className="clipboard-paper">
-          
-          </div>
-      </div>
-      <div className="clipboard-footer"></div>
+      </Clipboard>
       </div>
     );
     
