@@ -5,6 +5,8 @@ create table players
    primary key(player_id)
 );
 
+--Add start date to season maybe?
+
 create table season
 (
     season_id int NOT NULL AUTO_INCREMENT,
@@ -20,16 +22,8 @@ create table pick_history
     picked_day varchar(10) NOT NULL,
     option_selected int NOT NULL,
     primary key(pick_id),
-    FOREIGN KEY (player_id) REFERENCES players(player_id),
-    FOREIGN KEY (season_id) REFERENCES season(season_id)
-);
-
-create table score
-(
-    score_id int NOT NULL AUTO_INCREMENT,
-    player_id int NOT NULL,
-    season_id int NOT NULL,
-    primary key(score_id),
+    is_graded boolean DEFAULT false,
+    is_point boolean DEFAULT false,
     FOREIGN KEY (player_id) REFERENCES players(player_id),
     FOREIGN KEY (season_id) REFERENCES season(season_id)
 );

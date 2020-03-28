@@ -9,6 +9,9 @@ public class DetailedPickHistory {
     private String playersEmail;
     private int seasonId;
 
+    private boolean isGraded;
+    private boolean isPoint;
+
     public int getPickId() {
         return pickId;
     }
@@ -55,5 +58,21 @@ public class DetailedPickHistory {
 
     public void setSeasonId(int seasonId) {
         this.seasonId = seasonId;
+    }
+
+    public boolean isGraded() {
+        return isGraded;
+    }
+
+    public void setGraded(boolean graded) {
+        isGraded = graded;
+    }
+
+    public boolean isPoint() {
+        return isPoint;
+    }
+
+    public void setPoint(boolean point) {
+        isPoint = point;
     }
 }

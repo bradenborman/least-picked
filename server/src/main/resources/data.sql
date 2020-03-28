@@ -7,33 +7,37 @@ VALUES (1);
 --
 
 INSERT INTO players (email)
-VALUES ('test@hotmail.com');
+VALUES ('test1@hotmail.com');
 
 INSERT INTO players (email)
-VALUES ('bradenborman00@gmail.com');
+VALUES ('test2@hotmail.com');
 
+INSERT INTO players (email)
+VALUES ('test3@hotmail.com');
+
+INSERT INTO players (email)
+VALUES ('test4@hotmail.com');
+
+INSERT INTO players (email)
+VALUES ('test5@hotmail.com');
+
+
+INSERT INTO players (email)
+VALUES ('test6@hotmail.com');
 --
 
-INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (1, 1, '03/25/2020', 2);
 
 INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (2, 1, '03/25/2020', 2);
+VALUES (1, 1, '03/28/2020', 1);
 
 INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (1, 1, '03/26/2020', 2);
+VALUES (2, 1, '03/28/2020', 1);
 
 INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (2, 1, '03/26/2020', 2);
+VALUES (3, 1, '03/28/2020', 2);
 
 INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (1, 1, '03/27/2020', 2);
+VALUES (4, 1, '03/28/2020', 2);
 
 INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (2, 1, '03/27/2020', 2);
-
-INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (1, 1, '03/28/2020', 2);
-
-INSERT INTO pick_history (player_id, season_id, picked_day, option_selected)
-VALUES (2, 1, '03/28/2020', 2);
+VALUES (5, 1, '03/28/2020', 2);

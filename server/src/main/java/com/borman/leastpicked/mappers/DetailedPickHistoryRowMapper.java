@@ -10,16 +10,22 @@ public class DetailedPickHistoryRowMapper implements RowMapper<DetailedPickHisto
 
     @Override
     public DetailedPickHistory mapRow(ResultSet rs, int rowNum) throws SQLException {
+
         DetailedPickHistory ph = new DetailedPickHistory();
 
         //TODO
-//        ph.setOptionSelected();
-//        ph.setPickedDay();
-//        ph.setPlayerId();
-//        ph.setPlayerId();
+        ph.setOptionSelected(rs.getInt("option_selected"));
+        ph.setPickedDay(rs.getString("picked_day"));
+        ph.setPlayerId(rs.getInt("player_id"));
+//
 //        ph.setPlayersEmail();
-//        ph.setSeasonId();
+
+        ph.setSeasonId(rs.getInt("season_id"));
+
+        ph.setGraded(rs.getBoolean("is_graded"));
+        ph.setPoint(rs.getBoolean("is_point"));
 
         return ph;
+
     }
 }
