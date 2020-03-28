@@ -3,7 +3,9 @@ package com.borman.leastpicked.services;
 import com.borman.leastpicked.dao.SelectionDao;
 import com.borman.leastpicked.modls.AppData;
 import com.borman.leastpicked.modls.GameOption;
+import com.borman.leastpicked.modls.database.DetailedPickHistory;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
+import com.borman.leastpicked.utilities.DateManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,9 @@ public class SelectionService {
 
     public ResponseEntity<String> updateSelection(UpdateSelectionRequest request) {
         logger.info("User {}'s picked {}", request.getUserEmail(), request.getNewSelected());
+
+        //TODO setActive season ID not hard code
+        request.setActiveSeasonId(1);
 
         boolean hasUserAlreadyPicked = selectionDao.checkForUsersPick(request.getUserEmail());
 
@@ -54,5 +59,10 @@ public class SelectionService {
         appData.setOptions(gameOptionsList);
 
     }
+
+    List<DetailedPickHistory> getAllTodaysSelections() {
+       return selectionDao.getAllTodaysSelections(DateManagerUtil.getTodaysDateString());
+    }
+
 
 }

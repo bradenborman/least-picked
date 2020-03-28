@@ -1,6 +1,8 @@
 package com.borman.leastpicked.dao;
 
 import com.borman.leastpicked.dao.sql.SelectionSQL;
+import com.borman.leastpicked.mappers.DetailedPickHistoryRowMapper;
+import com.borman.leastpicked.modls.database.DetailedPickHistory;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
 import com.borman.leastpicked.utilities.DateManagerUtil;
 import org.slf4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class SelectionDao {
@@ -53,6 +57,12 @@ public class SelectionDao {
             //No pick was made today
             return null;
         }
+    }
+
+
+    public List<DetailedPickHistory> getAllTodaysSelections(String today) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("today", today);
+        return namedParameterJdbcTemplate.query(SelectionSQL.getAllTodaysSelections, params, new DetailedPickHistoryRowMapper());
     }
 
 

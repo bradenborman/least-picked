@@ -17,9 +17,9 @@ public class SelectionSQL {
     ") AND picked_day = :today;";
 
 
-    public static String insertSelectionByEmail = "INSERT INTO pick_history (player_id, picked_day, option_selected) " +
+    public static String insertSelectionByEmail = "INSERT INTO pick_history (player_id, season_id, picked_day, option_selected) " +
     "VALUES ( " +
-            "(SELECT PLAYER_ID FROM players WHERE email = :email), :today, :picked " +
+            "(SELECT PLAYER_ID FROM players WHERE email = :email), :activeSeason, :today, :picked " +
     ");";
 
 
@@ -27,12 +27,14 @@ public class SelectionSQL {
             "PLAYER_ID = ( SELECT player_id FROM players WHERE email = :email) AND PICKED_DAY = :today";
 
 
+    public static String getAllTodaysSelections = "SELECT * FROM pick_history WHERE PICKED_DAY = :today";
 
     public static MapSqlParameterSource getMapSqlParameterForPicking(UpdateSelectionRequest request) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("today", DateManagerUtil.getTodaysDateString());
         parameterSource.addValue("email", request.getUserEmail());
         parameterSource.addValue("picked", request.getNewSelected());
+        parameterSource.addValue("activeSeason", request.getActiveSeasonId());
         return parameterSource;
     }
 
