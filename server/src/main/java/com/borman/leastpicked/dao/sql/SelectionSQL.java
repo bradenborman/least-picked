@@ -29,6 +29,9 @@ public class SelectionSQL {
 
     public static String getAllTodaysSelections = "SELECT * FROM pick_history WHERE PICKED_DAY = :today";
 
+
+    public static String updateSelectionWinner = "UPDATE pick_history SET is_point = true WHERE option_selected = :selection AND picked_day = :today";
+
     public static MapSqlParameterSource getMapSqlParameterForPicking(UpdateSelectionRequest request) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("today", DateManagerUtil.getTodaysDateString());

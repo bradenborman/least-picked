@@ -44,6 +44,14 @@ public class UserDao {
             );
     }
 
+    public String getUsersScoreForSeason(String userEmail, String seasonId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("userEmail", userEmail);
+        params.addValue("seasonId", seasonId);
+        return namedParameterJdbcTemplate.queryForObject(UserSQL.getUsersScoreForSeason, params, String.class
+        );
+    }
+
 
     //namedParameterJdbcTemplate.update(UserSQL.insertUser, params);
     //MapSqlParameterSource params = new MapSqlParameterSource();

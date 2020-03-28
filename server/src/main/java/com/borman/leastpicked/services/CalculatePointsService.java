@@ -2,6 +2,7 @@ package com.borman.leastpicked.services;
 
 import com.borman.leastpicked.modls.database.DetailedPickHistory;
 import com.borman.leastpicked.utilities.CalculatePointsUtility;
+import com.borman.leastpicked.utilities.DateManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //0 0 0 * * ?	Every day at midnight - 12am
+//0 59 23 * * ?	Every day at midnight - 12am
 
 @Service
 public class CalculatePointsService {
@@ -22,17 +24,22 @@ public class CalculatePointsService {
 
     private final Logger logger = LoggerFactory.getLogger(CalculatePointsService.class);
 
-//    @Scheduled(cron = "0/15 * * * * *") //Every Min
+    @Scheduled(cron = "0/15 * * * * *") //Every Min
     public void calculateScores() {
+
+        String dateString = DateManagerUtil.getTodaysDateString();
+        selectionService.clearTodaysWinnerAsCaution(dateString);
+
         List<Integer> optionsPicked =  selectionService.getAllTodaysSelections().stream()
                 .map(DetailedPickHistory::getOptionSelected)
                 .collect(Collectors.toList());
 
-        List<Integer> x = CalculatePointsUtility.countFrequencies(optionsPicked);
+        List<Integer> winners = CalculatePointsUtility.countFrequencies(optionsPicked);
         logger.info("Selections that get points:");
-        x.forEach(y -> logger.info("{}", y));
-
-        //TODO-update pick history set is_point=true where pick date = date that was graded AND PICK SELECTION= one in x list
+        winners.forEach(y -> {
+            logger.info("{}", y);
+            selectionService.setSelectionAsWinner(y, dateString);
+        });
 
     }
 

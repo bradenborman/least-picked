@@ -33,12 +33,15 @@ public class ApiController {
         appData.setUserEmail(principal.getAttribute("email"));
         appData.setUsersFirstTime(userService.insertUserIfNessary(appData.getUserEmail()));
 
-        appData.setUserScore(new Random().nextInt(10)); //todo
-        appData.setHighScore(appData.getUserScore() + 6); //todo
-        appData.setActiveSeason("Season 1");
+        String seasonId = "1";
+
+        appData.setActiveSeason("Season " + seasonId);
         appData.setDaysUntilNextSeason(15);
 
+        userService.setUsersScore(appData, seasonId);
         selectionService.configGameOptions(appData);
+
+        appData.setHighScore(appData.getUserScore() + 6); //todo
 
         return ResponseEntity.ok(appData);
     }

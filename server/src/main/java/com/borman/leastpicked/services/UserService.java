@@ -1,6 +1,7 @@
 package com.borman.leastpicked.services;
 
 import com.borman.leastpicked.dao.UserDao;
+import com.borman.leastpicked.modls.AppData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,13 @@ public class UserService {
 
         return wasInserted;
 
+    }
+
+
+    public void setUsersScore(AppData appData, String seasonId) {
+        appData.setUserScore(
+               Integer.parseInt(userDao.getUsersScoreForSeason(appData.getUserEmail(), seasonId))
+        );
     }
 
 

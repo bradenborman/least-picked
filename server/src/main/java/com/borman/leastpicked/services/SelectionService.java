@@ -65,4 +65,15 @@ public class SelectionService {
     }
 
 
+    void setSelectionAsWinner(Integer selectionToUpdate, String dateString) {
+        if(selectionToUpdate != null) {
+            selectionDao.setSelectionAsWinner(selectionToUpdate, dateString);
+        }
+    }
+
+
+    public void clearTodaysWinnerAsCaution(String dateString) {
+        logger.warn("Clearing now because of cron job is every 20 secs or so.");
+        selectionDao.clearTodaysWinnerAsCaution(dateString);
+    }
 }

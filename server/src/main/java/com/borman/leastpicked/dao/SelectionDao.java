@@ -66,4 +66,16 @@ public class SelectionDao {
     }
 
 
+    public void setSelectionAsWinner(Integer selectionToUpdate, String dateString) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("selection", selectionToUpdate);
+        params.addValue("today", dateString);
+        namedParameterJdbcTemplate.update(SelectionSQL.updateSelectionWinner, params);
+    }
+
+    public void clearTodaysWinnerAsCaution(String dateString) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("today", dateString);
+        namedParameterJdbcTemplate.update("UPDATE pick_history SET is_point = false WHERE picked_day = :today", params);
+    }
 }
