@@ -6,6 +6,7 @@ import { AppInfo } from "../appinfo/appinfo";
 import { AppDataResponse } from "../../models/responses/appdata";
 import axios from "axios";
 import { SeasonDetails } from "./seasondetails/seasondetails";
+import { Checkmark } from "../misc/checkmark/checkmark";
 
 require("./mainscreen.scss");
 
@@ -19,17 +20,25 @@ export const MainScreen: React.FC<IMainScreenProps> = (
   const [data, setData] = useState<Array<IGameoption> | undefined>(
     props.appdata?.options
   );
+
   const [hasPicked, setHasPicked] = useState<boolean>(false);
-  const [activeId, setActiveId] = useState<number | undefined>(props.appdata?.activeOption);
-  const [prevActive, setPrevActive] = useState<number | undefined>(props.appdata?.activeOption);
+  const [activeId, setActiveId] = useState<number | undefined>(
+    props.appdata?.activeOption
+  );
+  const [prevActive, setPrevActive] = useState<number | undefined>(
+    props.appdata?.activeOption
+  );
+
+  const [showFeedback, setShowFeedback] = useState<boolean>(false);
 
   useEffect(() => {
     hangleSetDataAfterChangedPage();
   }, []);
 
   useEffect(() => {
-    if (activeId != null && prevActive != null && activeId != prevActive)
+    if (activeId != null && prevActive != null && activeId != prevActive) {
       updateSelection();
+    }
   }, [activeId]);
 
   const updateSelection = async () => {
@@ -39,6 +48,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
         newSelected: activeId
       });
       console.log(res);
+      setShowFeedback(true);
     } catch (err) {
       console.error(err);
     }
@@ -56,6 +66,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
   };
 
   const handleChange = (id: number) => {
+    setShowFeedback(false); //clear out incase clicks stack
     if (data != null) {
       setPrevActive(activeId);
       setActiveId(id);
@@ -87,6 +98,17 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     }
   };
 
+  const statusUpdater = (): JSX.Element | null => {
+    if (showFeedback && hasPicked)
+      return (
+        <div className="statusUpdater-wrapper">
+          <Checkmark />
+        </div>
+      );
+
+    return null;
+  };
+
   const getOptions = (): JSX.Element[] | JSX.Element | null => {
     if (data != null) {
       return data.map((option: IGameoption, index: number) => {
@@ -112,6 +134,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
         {props.appdata?.usersFirstTime ? (
           <p className="firstTimeTag">Welcome to the game</p>
         ) : null}
+        {statusUpdater()}
         <AppInfo appdata={props.appdata} />
         {getOptions()}
         <p className="hint">

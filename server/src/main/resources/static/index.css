@@ -9633,6 +9633,86 @@ nav {
   font-size: 1.2em;
 }
 
+.pencil {
+  width: 60px;
+  left: 85%;
+  top: -210%;
+  height: 320px;
+  position: relative;
+  transform: rotate(20deg);
+}
+.top {
+  position: relative;
+  border-bottom: 60px solid #ffe8c6;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+}
+.top::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  border-bottom: 20px solid black;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.left,
+.center,
+.right {
+  display: inline-block;
+  height: calc(100% - 60px - 20px);
+  position: relative;
+  float: left;
+}
+.left,
+.right {
+  width: 15px;
+  background: #e1b03a;
+}
+.left::before,
+.right::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0px;
+  border-bottom: 10px solid #e1b03a;
+  border-left: 7.5px solid transparent;
+  border-right: 7.5px solid transparent;
+}
+.center {
+  width: 30px;
+  background: #ffc334;
+  position: relative;
+}
+.center .pencilTxt {
+  transform: rotate(-90deg);
+  transform-origin: right, top;
+  -ms-transform: rotate(-90deg);
+  -ms-transform-origin: right, top;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: right, top;
+  width: 200px;
+  left: -85px;
+  top: 100px;
+  position: absolute;
+}
+.center::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: -15px;
+  border-bottom: 15px solid #ffc334;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+.bottom {
+  height: 20px;
+  width: 100%;
+  background: #c95957;
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 0 10px 10px;
+}
+
 .clipboard-header {
   max-width: 800px;
   margin: auto;

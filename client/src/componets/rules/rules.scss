@@ -1,20 +1,18 @@
 .rules {
-    margin-top: 70px;
+  margin: 70px 20px 800px 20px;
 
-    .rules-paper {
-        max-width: 850px;   
-        margin: auto;
-        padding: 35px;
+  .rules-paper {
+    max-width: 850px;
+    margin: auto;
+    padding: 35px;
 
-        .rules-heading {
-            font-size: 2.2em;
-        }
-
-        .rules-txt {
-            text-align: left;
-            font-size: 1.2em;
-        }
-
+    .rules-heading {
+      font-size: 2.2em;
     }
 
+    .rules-txt {
+      text-align: left;
+      font-size: 1.2em;
+    }
+  }
 }
