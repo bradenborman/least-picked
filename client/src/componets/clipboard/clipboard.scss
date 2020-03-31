@@ -1,5 +1,7 @@
+$clipboard-width: 690px;
+
 .clipboard-header {
-    max-width: 800px;
+    max-width: $clipboard-width;
     margin: auto;
     margin-top: 40px;
     background-color: #B1855E;
@@ -24,6 +26,7 @@
             display: inline-block;
             border-radius: 20px;
             border-bottom: 3px solid black;
+            font-size: 1.5em;
         }
     }
 
@@ -49,16 +52,16 @@
 
 .clipboard {
     background-color: #B1855E;
-    max-width: 800px;
+    max-width: $clipboard-width;
     margin: auto;
-    min-height: 800px;
+    min-height: 700px;
 
     .clipboard-paper {
         margin-top: 10px;
         background-color: white;
         margin: auto;
         width: 80%;
-        min-height: 800px;
+        min-height: 700px;
         padding:30px;
         padding-top: 65px;
         text-align: left;
@@ -69,7 +72,7 @@
 
 .clipboard-footer {
     background-color: #B1855E;
-    max-width: 800px;
+    max-width: $clipboard-width;
     margin: auto;
     height: 100px;
     margin-bottom: 200px;

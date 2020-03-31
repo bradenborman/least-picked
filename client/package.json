@@ -9,11 +9,6 @@
     "webpack": "cross-env NODE_ENV=production webpack --mode production",
     "build": "npm run clean && npm run webpack"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {

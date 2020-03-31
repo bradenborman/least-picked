@@ -16,3 +16,9 @@ ___
 'npm install husky --save-dev'
 https://github.com/spring-projects/spring-security/tree/master/samples/boot/oauth2login#facebook-login
 gradlew wrapper --gradle-version 5.5
+
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },

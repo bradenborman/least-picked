@@ -5,11 +5,11 @@ header {
     background-color: #7cd56c;
     border-bottom: 5px solid black;
     text-align: left;
+    font-size: 2em;
    // background-image: url("https://st2.depositphotos.com/1502315/8993/i/950/depositphotos_89939644-stock-photo-dark-grey-texture-may-used.jpg");
 
     .header-wrapper {
         position: absolute;
-        font-size: 2em;
         font-weight: bold;
         animation: $annimation-length ease-out 0s 1 slideInFromLeft;
         background-color: whitesmoke;
@@ -17,7 +17,7 @@ header {
         padding: 18px;
         padding-bottom: 30px;
         border-radius: 14px;
-        border: 3px solid black;       
+        border: 3px solid black;  
     }
     .header-wrapper::after {
         content: "";

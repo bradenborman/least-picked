@@ -15,7 +15,13 @@ public class ViewController {
             "/play",
             "rules",
             "leaderboard",
-            "play"
+            "play",
+            "/about",
+            "about",
+            "/contact",
+            "contact",
+            "/privacy-policy",
+            "privacy-policy"
     })
     public String getView() {
         return "index";

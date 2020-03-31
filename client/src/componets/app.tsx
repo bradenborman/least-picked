@@ -13,6 +13,10 @@ import { Header } from "./header/header";
 import { Rules } from "./rules/rules";
 import { AppDataResponse } from "../models/responses/appdata";
 import { Leaderboard } from "./leaderboard/leaderboard";
+import { Footer } from "./footer/footer";
+import { About } from "./footer/about/about";
+import { Contact } from "./footer/contactus/contactus";
+import { PrivacyPolicy } from "./footer/policy/policy";
 
 require("./app.scss");
 
@@ -53,6 +57,18 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const getLeaderBoard = (): JSX.Element => {
     return <Leaderboard />;
   };
+
+  const getAboutPage = (): JSX.Element => {
+    return <About />;
+  };
+
+  const getContact = (): JSX.Element => {
+    return <Contact />;
+  };
+
+  const getSitePolicy = (): JSX.Element => {
+    return <PrivacyPolicy />;
+  };
   
   const handleFetch = (): JSX.Element => {
     if (fetching) return <Spinner className="loading" animation="grow" />;
@@ -65,11 +81,16 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         handleFetch()
       ) : (
         <ReactRouter>
-          <Header />
+            <Header />           
             <ReactRoute exact path={["/", "/play"]} component={getPlayScreen} />
             <ReactRoute exact path={["/leaderboard"]} component={getLeaderBoard} />
-          <ReactRoute path="/rules" component={getRules} />
+            <ReactRoute exact path={["/about"]} component={getAboutPage} />
+            <ReactRoute path="/rules" component={getRules} />
+            <ReactRoute path="/contact" component={getContact} />
+            <ReactRoute path="/privacy-policy" component={getSitePolicy} />
+            <Footer />
         </ReactRouter>
+        
       )}
     </div>
   );

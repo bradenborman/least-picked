@@ -44,7 +44,7 @@ export const Header: React.FC<IHeaderProps> = (
       >
         {getTabs()}
         </Tabs>
-        </nav>
+      </nav>
     </div>
   );
 

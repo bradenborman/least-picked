@@ -132,7 +132,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
     <div className="main-screen">
       <div className="main-screen-wrapper">
         {props.appdata?.usersFirstTime ? (
-          <p className="firstTimeTag">Welcome to the game</p>
+          null // <p className="firstTimeTag">Welcome to the game</p>
         ) : null}
         {statusUpdater()}
         <AppInfo appdata={props.appdata} />
