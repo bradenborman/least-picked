@@ -22,8 +22,8 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
   ];
 
   const getDots = (length: number) => {
-    if (length > 17) return <span>.......................................</span>;
-      return <span>............................................</span>;
+    if (length > 17) return <span>..........................................</span>;
+      return <span>................................................</span>;
   };
 
   const createLeaderboardRows = (): JSX.Element[] | JSX.Element => {

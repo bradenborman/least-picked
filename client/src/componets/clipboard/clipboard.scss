@@ -1,4 +1,4 @@
-$clipboard-width: 690px;
+$clipboard-width: 710px;
 
 .clipboard-header {
     max-width: $clipboard-width;
@@ -55,6 +55,7 @@ $clipboard-width: 690px;
     max-width: $clipboard-width;
     margin: auto;
     min-height: 700px;
+    font-size: .8em;
 
     .clipboard-paper {
         margin-top: 10px;
