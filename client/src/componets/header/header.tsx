@@ -30,12 +30,9 @@ export const Header: React.FC<IHeaderProps> = (
   return (
     <div>
       <header className="header">
-          <div className="header-wrapper">
-        Least-Picked Challenge
-          </div>      
-      </header>
-      <nav>
-    <Tabs
+        <div className="header-wrapper">Least-Picked Challenge</div>  
+        <nav>
+        <Tabs
         value={activeIndex}
         centered
         indicatorColor="primary"
@@ -43,8 +40,9 @@ export const Header: React.FC<IHeaderProps> = (
         onChange={(e, v) => handleChange(e, v)}
       >
         {getTabs()}
-        </Tabs>
-      </nav>
+          </Tabs>
+          </nav>
+     </header>
     </div>
   );
 

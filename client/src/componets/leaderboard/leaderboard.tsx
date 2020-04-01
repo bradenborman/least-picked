@@ -23,7 +23,7 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
 
   const getDots = (length: number) => {
     if (length > 17) return <span>..........................................</span>;
-      return <span>................................................</span>;
+      return <span>....................................................</span>;
   };
 
   const createLeaderboardRows = (): JSX.Element[] | JSX.Element => {
@@ -39,7 +39,7 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
   };
 
   return (
-    <div>
+    <div className="leaderboard">
       <Clipboard
         clipboardTitle="Leaderboard"
         pencilTxt="Least Picked Challenge"

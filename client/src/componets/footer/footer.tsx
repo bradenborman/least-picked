@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 require("./footer.scss");
 
@@ -8,6 +8,7 @@ export const Footer: React.FC<IFooterProps> = (
   props: IFooterProps
 ) => {
 
+const preventDefault = (event: any) => event.preventDefault();
 
     return (
     <footer className="site-footer">

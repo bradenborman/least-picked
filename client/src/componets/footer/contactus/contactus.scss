@@ -1,4 +1,11 @@
 .contact-us-wrapper {
-    margin: 100px 10px 500px 10px;
+    margin: 0px 50px 50px 50px;
+    font-size: .7em;
+    padding: 100px 200px 500px 200px;
+    text-align: left;
+
+    h1:not(:first-child) {
+        margin-top: 125px;
+    }
 
 }
