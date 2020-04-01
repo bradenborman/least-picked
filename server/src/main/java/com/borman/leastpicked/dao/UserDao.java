@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class UserDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public boolean insertUserIfNecessary(String userEmail) {
-        int id = -1;
+        Integer id = -1;
         if("0".equals(checkUserExists(userEmail))) {
 
             SimpleJdbcInsert insertLobby = new SimpleJdbcInsert(jdbcTemplate)
@@ -30,7 +31,7 @@ public class UserDao {
 
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("email", userEmail);
-            id = (int) insertLobby.executeAndReturnKey(parameters);
+            id  = (Integer) insertLobby.executeAndReturnKey(parameters);
         }
 
         return id != -1;
