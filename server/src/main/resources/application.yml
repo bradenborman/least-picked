@@ -11,6 +11,8 @@ spring:
     url: jdbc:mysql://us-cdbr-iron-east-01.cleardb.net/heroku_c250dadf7effe4c
     username: b1db4aa9b13e19
     password: b0c90b8a
+    testOnBorrow: true
+    validationQuery: SELECT 1
 
   #https://developers.facebook.com/apps/ for facebook
   security:

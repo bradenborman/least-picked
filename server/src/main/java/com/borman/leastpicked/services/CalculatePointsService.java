@@ -27,19 +27,19 @@ public class CalculatePointsService {
     @Scheduled(cron = "0/15 * * * * *") //Every Min
     public void calculateScores() {
 
-//        String dateString = DateManagerUtil.getTodaysDateString();
-//        selectionService.clearTodaysWinnerAsCaution(dateString);
-//
-//        List<Integer> optionsPicked =  selectionService.getAllTodaysSelections().stream()
-//                .map(DetailedPickHistory::getOptionSelected)
-//                .collect(Collectors.toList());
-//
-//        List<Integer> winners = CalculatePointsUtility.countFrequencies(optionsPicked);
-//        logger.info("Selections that get points:");
-//        winners.forEach(y -> {
-//            logger.info("{}", y);
-//            selectionService.setSelectionAsWinner(y, dateString);
-//        });
+        String dateString = DateManagerUtil.getTodaysDateString();
+        selectionService.clearTodaysWinnerAsCaution(dateString);
+
+        List<Integer> optionsPicked =  selectionService.getAllTodaysSelections().stream()
+                .map(DetailedPickHistory::getOptionSelected)
+                .collect(Collectors.toList());
+
+        List<Integer> winners = CalculatePointsUtility.countFrequencies(optionsPicked);
+        logger.info("Selections that get points:");
+        winners.forEach(y -> {
+            logger.info("{}", y);
+            selectionService.setSelectionAsWinner(y, dateString);
+        });
 
     }
 

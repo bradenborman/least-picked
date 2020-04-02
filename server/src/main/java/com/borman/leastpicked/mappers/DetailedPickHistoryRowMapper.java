@@ -22,7 +22,7 @@ public class DetailedPickHistoryRowMapper implements RowMapper<DetailedPickHisto
 
         ph.setSeasonId(rs.getInt("season_id"));
 
-        ph.setGraded(rs.getBoolean("is_graded"));
+       // ph.setGraded(rs.getBoolean("is_graded"));
         ph.setPoint(rs.getBoolean("is_point"));
 
         return ph;

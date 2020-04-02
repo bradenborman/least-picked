@@ -21,9 +21,8 @@ public class UserDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public boolean insertUserIfNecessary(String userEmail) {
-        Integer id = -1;
-        if("0".equals(checkUserExists(userEmail))) {
+    public boolean insertUserIfNecessary(String userEmail, String fullName) {
+          if("0".equals(checkUserExists(userEmail))) {
 
             SimpleJdbcInsert insertLobby = new SimpleJdbcInsert(jdbcTemplate)
                     .withTableName("players")
@@ -31,10 +30,11 @@ public class UserDao {
 
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("email", userEmail);
-            id  = (Integer) insertLobby.executeAndReturnKey(parameters);
+            parameters.put("full_name", fullName);
+            return insertLobby.executeAndReturnKey(parameters).intValue() > 0;
         }
 
-        return id != -1;
+        return false;
 
     }
 
@@ -51,6 +51,12 @@ public class UserDao {
         params.addValue("seasonId", seasonId);
         return namedParameterJdbcTemplate.queryForObject(UserSQL.getUsersScoreForSeason, params, String.class
         );
+    }
+
+    public void getAllUniqueUsersThisSeason(int activeSeason) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("season", activeSeason);
+      //  return namedParameterJdbcTemplate.query(SelectionSQL.getAllUniqueUsersThisSeason, params, Mapper);
     }
 
 

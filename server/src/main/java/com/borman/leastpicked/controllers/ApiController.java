@@ -1,7 +1,9 @@
 package com.borman.leastpicked.controllers;
 
 import com.borman.leastpicked.modls.AppData;
+import com.borman.leastpicked.modls.LeaderBoardRow;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
+import com.borman.leastpicked.services.LeaderBoardService;
 import com.borman.leastpicked.services.SelectionService;
 import com.borman.leastpicked.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Random;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -23,6 +25,8 @@ public class ApiController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    LeaderBoardService leaderboardService;
 
     @GetMapping("/app-data")
     public ResponseEntity<AppData> getAppData(@AuthenticationPrincipal OAuth2User principal) {
@@ -31,7 +35,7 @@ public class ApiController {
         //done for now
         appData.setUserName(principal.getAttribute("name"));
         appData.setUserEmail(principal.getAttribute("email"));
-        appData.setUsersFirstTime(userService.insertUserIfNessary(appData.getUserEmail()));
+        appData.setUsersFirstTime(userService.insertUserIfNecessary(appData.getUserEmail(), appData.getUserName()));
 
         String seasonId = "1";
 
@@ -51,5 +55,10 @@ public class ApiController {
         return selectionService.updateSelection(updateSelectionRequest);
     }
 
+
+    @GetMapping("/leaders")
+    public ResponseEntity<List<LeaderBoardRow>> submitPick() {
+        return leaderboardService.getLeaderBoard();
+    }
 
 }

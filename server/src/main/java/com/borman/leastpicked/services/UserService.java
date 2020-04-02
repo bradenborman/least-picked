@@ -16,8 +16,8 @@ public class UserService {
     private UserDao userDao;
 
 
-    public boolean insertUserIfNessary(String userEmail) {
-        boolean wasInserted = userDao.insertUserIfNecessary(userEmail);
+    public boolean insertUserIfNecessary(String userEmail, String playerName) {
+        boolean wasInserted = userDao.insertUserIfNecessary(userEmail, playerName);
 
         if(wasInserted)
             logger.info("{} was inserted into the database.", userEmail);
@@ -34,4 +34,7 @@ public class UserService {
     }
 
 
+    public void getAllUniqueUsersThisSeason() {
+        userDao.getAllUniqueUsersThisSeason(1);
+    }
 }
