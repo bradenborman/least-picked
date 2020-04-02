@@ -15,19 +15,8 @@ public class LeaderBoardService {
     @Autowired
     SelectionDao selectionDao;
 
-    @Autowired
-    UserService userService;
-
-
     public ResponseEntity<List<LeaderBoardRow>> getLeaderBoard() {
-
-
-        userService.getAllUniqueUsersThisSeason();
-
-
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(selectionDao.getTopTenLeadersThisSeason("1"));
     }
-
-
 
 }

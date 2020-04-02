@@ -6,7 +6,6 @@ import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
 import com.borman.leastpicked.services.LeaderBoardService;
 import com.borman.leastpicked.services.SelectionService;
 import com.borman.leastpicked.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -18,15 +17,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class ApiController {
 
-    @Autowired
-    SelectionService selectionService;
+    private SelectionService selectionService;
+    private UserService userService;
+    private LeaderBoardService leaderboardService;
 
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    LeaderBoardService leaderboardService;
+    public ApiController(SelectionService selectionService, UserService userService, LeaderBoardService leaderboardService) {
+        this.selectionService = selectionService;
+        this.userService = userService;
+        this.leaderboardService = leaderboardService;
+    }
 
     @GetMapping("/app-data")
     public ResponseEntity<AppData> getAppData(@AuthenticationPrincipal OAuth2User principal) {
@@ -37,15 +36,15 @@ public class ApiController {
         appData.setUserEmail(principal.getAttribute("email"));
         appData.setUsersFirstTime(userService.insertUserIfNecessary(appData.getUserEmail(), appData.getUserName()));
 
-        String seasonId = "1";
 
+        String seasonId = "1";
         appData.setActiveSeason("Season " + seasonId);
         appData.setDaysUntilNextSeason(15);
 
         userService.setUsersScore(appData, seasonId);
         selectionService.configGameOptions(appData);
 
-        appData.setHighScore(appData.getUserScore() + 6); //todo
+        appData.setHighScore(appData.getUserScore() + 6); //todo remove maybe
 
         return ResponseEntity.ok(appData);
     }

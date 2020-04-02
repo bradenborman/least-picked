@@ -2,12 +2,13 @@ package com.borman.leastpicked.dao;
 
 import com.borman.leastpicked.dao.sql.SelectionSQL;
 import com.borman.leastpicked.mappers.DetailedPickHistoryRowMapper;
+import com.borman.leastpicked.mappers.LeaderBoardRowMapper;
+import com.borman.leastpicked.modls.LeaderBoardRow;
 import com.borman.leastpicked.modls.database.DetailedPickHistory;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
 import com.borman.leastpicked.utilities.DateManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -19,9 +20,11 @@ public class SelectionDao {
 
     private Logger logger = LoggerFactory.getLogger(SelectionDao.class);
 
-    @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    public SelectionDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     public boolean checkForUsersPick(String userEmail) {
 
@@ -54,11 +57,9 @@ public class SelectionDao {
         try {
             return namedParameterJdbcTemplate.queryForObject(SelectionSQL.getUsersSelectionToday, params, String.class);
         }catch (Exception e) {
-            //No pick was made today
-            return null;
+            return null;//No pick was made today
         }
     }
-
 
     public List<DetailedPickHistory> getAllTodaysSelections(String today) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("today", today);
@@ -77,5 +78,10 @@ public class SelectionDao {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("today", dateString);
         namedParameterJdbcTemplate.update("UPDATE pick_history SET is_point = false WHERE picked_day = :today", params);
+    }
+
+    public List<LeaderBoardRow> getTopTenLeadersThisSeason(String activeSeason) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("season", activeSeason);
+        return namedParameterJdbcTemplate.query(SelectionSQL.TopTenLeadersThisSeason, params, new LeaderBoardRowMapper());
     }
 }
