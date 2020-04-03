@@ -36,7 +36,6 @@ public class ApiController {
         appData.setUserEmail(principal.getAttribute("email"));
         appData.setUsersFirstTime(userService.insertUserIfNecessary(appData.getUserEmail(), appData.getUserName()));
 
-
         String seasonId = "1";
         appData.setActiveSeason("Season " + seasonId);
         appData.setDaysUntilNextSeason(15);
