@@ -22,7 +22,6 @@ public class SelectionSQL {
             "(SELECT PLAYER_ID FROM players WHERE email = :email), :activeSeason, :today, :picked " +
     ");";
 
-
     public static String getUsersSelectionToday = "SELECT option_selected FROM pick_history WHERE " +
             "PLAYER_ID = ( SELECT player_id FROM players WHERE email = :email) AND PICKED_DAY = :today";
 
@@ -32,10 +31,12 @@ public class SelectionSQL {
 
     public static String updateSelectionWinner = "UPDATE pick_history SET is_point = true WHERE option_selected = :selection AND picked_day = :today";
 
-    public final static String TopTenLeadersThisSeason = "SELECT count(*) as points, pick_history.player_id, players.email, players.full_name FROM pick_history" +
+    public final static String TopTenLeadersThisSeason = "SELECT pick_history.player_id, players.email, players.full_name, count(*) as points FROM pick_history" +
             " INNER JOIN players ON pick_history.player_id=players.player_id" +
-            " where season_id = :season and is_point = true" +
-            " Order by points desc Limit 10;";
+            " where season_id = '1' and is_point = true" +
+            " GROUP BY players.email" +
+            " ORDER BY points desc" +
+            " Limit 10;";
 
     public static MapSqlParameterSource getMapSqlParameterForPicking(UpdateSelectionRequest request) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
