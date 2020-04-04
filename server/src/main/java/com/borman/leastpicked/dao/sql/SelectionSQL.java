@@ -33,7 +33,7 @@ public class SelectionSQL {
 
     public final static String TopTenLeadersThisSeason = "SELECT pick_history.player_id, players.email, players.full_name, count(*) as points FROM pick_history" +
             " INNER JOIN players ON pick_history.player_id=players.player_id" +
-            " where season_id = '1' and is_point = true" +
+            " where season_id = :activeSeason and is_point = true" +
             " GROUP BY players.email" +
             " ORDER BY points desc" +
             " Limit 10;";

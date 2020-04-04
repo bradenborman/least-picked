@@ -1,13 +1,11 @@
 package com.borman.leastpicked.controllers;
 
-import com.borman.leastpicked.config.GameSettings;
 import com.borman.leastpicked.modls.AppData;
 import com.borman.leastpicked.modls.LeaderBoardRow;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
 import com.borman.leastpicked.services.AppDataService;
 import com.borman.leastpicked.services.LeaderBoardService;
 import com.borman.leastpicked.services.SelectionService;
-import com.borman.leastpicked.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;

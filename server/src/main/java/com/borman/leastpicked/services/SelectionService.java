@@ -1,5 +1,6 @@
 package com.borman.leastpicked.services;
 
+import com.borman.leastpicked.config.GameSettings;
 import com.borman.leastpicked.dao.SelectionDao;
 import com.borman.leastpicked.modls.AppData;
 import com.borman.leastpicked.modls.GameOption;
@@ -20,17 +21,17 @@ public class SelectionService {
     private Logger logger = LoggerFactory.getLogger(SelectionService.class);
 
     private SelectionDao selectionDao;
+    private GameSettings gameSettings;
 
-    public SelectionService(SelectionDao selectionDao) {
+    public SelectionService(SelectionDao selectionDao, GameSettings gameSettings) {
         this.selectionDao = selectionDao;
+        this.gameSettings = gameSettings;
     }
 
     public ResponseEntity<String> updateSelection(UpdateSelectionRequest request) {
         logger.info("User {}'s picked {}", request.getUserEmail(), request.getNewSelected());
 
-        //TODO setActive season ID not hard code
-        request.setActiveSeasonId(1);
-
+        request.setActiveSeasonId(gameSettings.getActiveSeasonInt());
         boolean hasUserAlreadyPicked = selectionDao.checkForUsersPick(request.getUserEmail());
 
         if(hasUserAlreadyPicked)

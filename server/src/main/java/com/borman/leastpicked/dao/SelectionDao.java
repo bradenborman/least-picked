@@ -81,7 +81,7 @@ public class SelectionDao {
     }
 
     public List<LeaderBoardRow> getTopTenLeadersThisSeason(String activeSeason) {
-        MapSqlParameterSource params = new MapSqlParameterSource().addValue("season", activeSeason);
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("activeSeason", activeSeason);
         return namedParameterJdbcTemplate.query(SelectionSQL.TopTenLeadersThisSeason, params, new LeaderBoardRowMapper());
     }
 }
