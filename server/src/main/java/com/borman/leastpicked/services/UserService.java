@@ -10,15 +10,14 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private Logger logger = LoggerFactory.getLogger(UserService.class);
-
-
     private UserDao userDao;
 
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public boolean insertUserIfNecessary(String userEmail, String playerName) {
+
+    boolean insertUserIfNecessary(String userEmail, String playerName) {
         boolean wasInserted = userDao.insertUserIfNecessary(userEmail, playerName);
 
         if(wasInserted)
@@ -27,7 +26,8 @@ public class UserService {
         return wasInserted;
 
     }
-    public void setUsersScore(AppData appData, String seasonId) {
+
+    void setUsersScore(AppData appData, int seasonId) {
         appData.setUserScore(
                Integer.parseInt(userDao.getUsersScoreForSeason(appData.getUserEmail(), seasonId))
         );

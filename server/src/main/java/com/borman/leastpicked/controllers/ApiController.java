@@ -1,8 +1,10 @@
 package com.borman.leastpicked.controllers;
 
+import com.borman.leastpicked.config.GameSettings;
 import com.borman.leastpicked.modls.AppData;
 import com.borman.leastpicked.modls.LeaderBoardRow;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
+import com.borman.leastpicked.services.AppDataService;
 import com.borman.leastpicked.services.LeaderBoardService;
 import com.borman.leastpicked.services.SelectionService;
 import com.borman.leastpicked.services.UserService;
@@ -18,34 +20,18 @@ import java.util.List;
 public class ApiController {
 
     private SelectionService selectionService;
-    private UserService userService;
     private LeaderBoardService leaderboardService;
+    private AppDataService appDataService;
 
-    public ApiController(SelectionService selectionService, UserService userService, LeaderBoardService leaderboardService) {
+    public ApiController(SelectionService selectionService, LeaderBoardService leaderboardService, AppDataService appDataService) {
         this.selectionService = selectionService;
-        this.userService = userService;
         this.leaderboardService = leaderboardService;
+        this.appDataService = appDataService;
     }
 
     @GetMapping("/app-data")
     public ResponseEntity<AppData> getAppData(@AuthenticationPrincipal OAuth2User principal) {
-        AppData appData = new AppData();
-
-        //done for now
-        appData.setUserName(principal.getAttribute("name"));
-        appData.setUserEmail(principal.getAttribute("email"));
-        appData.setUsersFirstTime(userService.insertUserIfNecessary(appData.getUserEmail(), appData.getUserName()));
-
-        String seasonId = "1";
-        appData.setActiveSeason("Season " + seasonId);
-        appData.setDaysUntilNextSeason(15);
-
-        userService.setUsersScore(appData, seasonId);
-        selectionService.configGameOptions(appData);
-
-        appData.setHighScore(appData.getUserScore() + 6); //todo remove maybe
-
-        return ResponseEntity.ok(appData);
+       return appDataService.getAppData(principal, new AppData());
     }
 
     @PostMapping("/updateSelected")

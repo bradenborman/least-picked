@@ -45,7 +45,7 @@ public class UserDao {
             );
     }
 
-    public String getUsersScoreForSeason(String userEmail, String seasonId) {
+    public String getUsersScoreForSeason(String userEmail, int seasonId) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("userEmail", userEmail);
         params.addValue("seasonId", seasonId);

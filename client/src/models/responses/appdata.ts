@@ -10,7 +10,6 @@ export interface AppDataResponse {
   activeOption: number;
 
   activeSeason: string;
-  daysUntilNextSeason: number;
-  highScore: number;
+  daysLeftInCurrentSeason: number;
 
 }

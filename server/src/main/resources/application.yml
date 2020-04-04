@@ -24,3 +24,15 @@ spring:
             client-secret: ae5c907268c4c411214b3a8b3487e14a
             scope:
               - email
+
+game-settings:
+  activeSeasonInt: 1
+  seasons:
+    1:
+      startDate: "01/01/2020"
+      endDate: "04/10/2020"
+      nickName: "Inaugural season"
+    2:
+      startDate: "04/11/2020"
+      endDate: "12/31/2020"
+      nickName: "Better than 1st"
