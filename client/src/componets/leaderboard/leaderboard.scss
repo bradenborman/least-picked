@@ -1,10 +1,41 @@
-.leaderboard {
+$showtime: .35s;
 
+.leaderboard {
     margin-top: 60px;
+
+    .seasonDetails:hover {
+      .seasonRange {
+        visibility: visible;
+        opacity: 1;
+        box-shadow: 2px 2px #515151;
+      }
+    }
 
     .seasonDetails {
    
+      cursor: help;
       margin-bottom: 30px;
+
+      .seasonRange {  
+        position: absolute;
+        margin-left: 30px;
+        padding: 8px;
+        background-color: #faf8f5;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 0px 10px 10px 10px;
+        font-size: .7em;
+        display: inline-block;
+        opacity: 0;
+        visibility: hidden;
+        border: 1px solid #1188bb;
+        -webkit-transition: opacity $showtime, visibility $showtime;
+        transition: opacity $showtime, visibility $showtime;
+      }
+
+      .seasonNickname {
+        font-weight: bold;
+      }
 
       .daysLeft {
         font-size: .9em;
