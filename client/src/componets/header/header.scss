@@ -1,7 +1,7 @@
 $annimation-length: .8s;
 
 header {
-    padding: 40px 40px 40px 40px;
+    padding: 10px 10px 20px 10px;
     background-color: #7cd56c;
     border-bottom: 5px solid black;
     text-align: left;
@@ -14,6 +14,8 @@ header {
         animation: $annimation-length ease-out 0s 1 slideInFromLeft;
         background-color: whitesmoke;
         display: inline;
+        top: 20px;
+        left: 10px;
         padding: 18px;
         padding-bottom: 30px;
         border-radius: 14px;

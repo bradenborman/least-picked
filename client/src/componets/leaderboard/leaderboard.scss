@@ -2,13 +2,23 @@
 
     margin-top: 60px;
 
+    .seasonDetails {
+   
+      margin-bottom: 30px;
+
+      .daysLeft {
+        font-size: .9em;
+      }
+
+    }
+
     .scores {
         position: relative;
         margin-left: 40px;
         font-size: 1em;
 
         p.score {
-            margin-bottom: 30px;
+            margin-bottom: 17px;
         }
 
         span.score {
@@ -21,16 +31,12 @@
     }
 }
 
-/* Editable */
 $spinner-radius: .5em;
 $bgColor: #8d49f3;
-
-/* Probably shouldn't edit, but go crazy. */
 $iteration-duration: 400ms;
 $cycle-duration: 1000ms;
 $spinner-width: $spinner-radius * 4;
 
-/* Sassery */
 .spinner {
   position: relative;
   margin: auto;

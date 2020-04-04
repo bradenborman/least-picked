@@ -3,6 +3,7 @@ package com.borman.leastpicked.controllers;
 import com.borman.leastpicked.modls.AppData;
 import com.borman.leastpicked.modls.LeaderBoardRow;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
+import com.borman.leastpicked.modls.responses.LeaderBoardResponse;
 import com.borman.leastpicked.services.AppDataService;
 import com.borman.leastpicked.services.LeaderBoardService;
 import com.borman.leastpicked.services.SelectionService;
@@ -39,7 +40,7 @@ public class ApiController {
 
 
     @GetMapping("/leaders")
-    public ResponseEntity<List<LeaderBoardRow>> submitPick() {
+    public ResponseEntity<LeaderBoardResponse> submitPick() {
         return leaderboardService.getLeaderBoard();
     }
 

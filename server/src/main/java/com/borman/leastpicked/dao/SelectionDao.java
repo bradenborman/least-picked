@@ -80,7 +80,7 @@ public class SelectionDao {
         namedParameterJdbcTemplate.update("UPDATE pick_history SET is_point = false WHERE picked_day = :today", params);
     }
 
-    public List<LeaderBoardRow> getTopTenLeadersThisSeason(String activeSeason) {
+    public List<LeaderBoardRow> getTopTenLeadersThisSeason(int activeSeason) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("activeSeason", activeSeason);
         return namedParameterJdbcTemplate.query(SelectionSQL.TopTenLeadersThisSeason, params, new LeaderBoardRowMapper());
     }

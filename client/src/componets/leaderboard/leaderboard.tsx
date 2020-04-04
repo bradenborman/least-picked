@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { Clipboard } from "../clipboard/clipboard";
-import { LeaderboardRow } from "../../models/responses/leaderboardrow";
+import { LeaderboardRow, LeaderboardResponse } from "../../models/responses/leaderboardreponse";
 import axios from "axios";
 
 require("./leaderboard.scss");
@@ -11,7 +11,7 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
   props: ILeaderboardProps
 ) => {
 
-  const [leaderboardData, setLeaderboardData] = useState<Array<LeaderboardRow>>();
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardResponse>();
   const [fetching, setFetching] = useState<boolean>(true);
   const [fetchError, setFetchError] = useState<boolean>(false);
 
@@ -37,23 +37,36 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
       return <span>....................................................</span>;
   };
 
-  const createLeaderboardRows = (): JSX.Element[] | JSX.Element | null => {    
-    
-    if (leaderboardData != null)   
-    return leaderboardData.map((leaderboardrow: LeaderboardRow, index: number) => {
-      return (
-        <p className="score">
-          {leaderboardrow.rank}) {leaderboardrow.name}
-          {getDots(leaderboardrow.name.length)}
-          <span className="score">{leaderboardrow.score}</span>
-        </p>
-      );
-    });
-    else if(fetching)
-      return getLoadings()
-    else if(fetchError)
-      return <p>Error Loading Data....</p>
-    
+  const createClipbaordHeadersAndLeaderboardRows = (): JSX.Element[] | JSX.Element | null => {      
+    if (leaderboardData != null) {
+      
+      const rows = leaderboardData.topTenLeaders.map((leaderboardrow: LeaderboardRow, index: number) => {
+        return (
+          <p className="score">
+            {leaderboardrow.rank}) {leaderboardrow.name}
+            {getDots(leaderboardrow.name.length)}
+            <span className="score">{leaderboardrow.score}</span>
+          </p>
+        );
+      });
+
+      const header = (
+        <div className="seasonDetails">
+          <h3 className="seasonName">"{leaderboardData.activeSeason.nickName}"</h3>
+          <p className="daysLeft">
+            {leaderboardData.daysLeftInActiveSeason == 1 ? " Last day of the season!" : leaderboardData.daysLeftInActiveSeason + " days left in season." } 
+          </p>
+        </div>
+      )
+ 
+      return ( 
+        <div>
+          {header}
+          {rows}
+        </div>      
+      )
+    }
+
 
     return null;
   };
@@ -69,13 +82,25 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
   }
 
 
+  const getClipBoardContents = (): JSX.Element[] | JSX.Element | null => {
+    if (leaderboardData != null)   
+    {
+      return createClipbaordHeadersAndLeaderboardRows()
+    }
+    else if(fetching)
+      return getLoadings()
+    else if(fetchError)
+      return <p>Error Loading Data....</p>
+    return null;
+  }
+
   return (
     <div className="leaderboard">
       <Clipboard
         clipboardTitle="Leaderboard"
         pencilTxt="Least Picked Challenge"
       >
-        <div className="scores">{createLeaderboardRows()}</div>
+        <div className="scores">{getClipBoardContents()}</div>
       </Clipboard>
     </div>
   );
