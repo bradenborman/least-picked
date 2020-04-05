@@ -21,7 +21,9 @@ public class ViewController {
             "/contact",
             "contact",
             "/privacy-policy",
-            "privacy-policy"
+            "privacy-policy",
+            "/terms-of-service",
+            "terms-of-service"
     })
     public String getView() {
         return "index";
