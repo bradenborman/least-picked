@@ -1,0 +1,60 @@
+.terms-of-service-wrapper {
+    margin: 0px 50px 50px 50px;
+    text-align: left;
+
+    font-size: .7em;
+    padding: 100px 300px 100px 300px;
+
+
+    h1:not(:first-child) {
+        margin-top: 125px; 
+    }
+
+    h1 {
+        position: relative;
+    }
+
+    h2 {
+        margin-top: 25px;
+        position: relative;
+    }
+    
+    h1::after {
+        content: "";
+        position: absolute;
+        height: 66%;
+        top: 22%;
+        width: 30px;
+        left: -50px;
+        background-color: #7cd56c;
+        box-shadow: 3px 3px#8d49f3;
+        border: 2px solid white;
+    }
+
+
+    h2::after {
+        content: "";
+        position: absolute;
+        width: 13px;
+        height: 33%;
+        top: 33%;
+        left: -25px;
+        background-color: #7cd56c;
+        animation-name: spin;
+        animation-duration: 10000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear; 
+        border: 2px solid white;
+        box-shadow: 3px 3px#8d49f3;
+    }
+    
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

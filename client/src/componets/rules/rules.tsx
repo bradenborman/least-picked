@@ -15,9 +15,18 @@ export const Rules: React.FC<IRulesProps> = (
 
 
   const getGameRules = (): JSX.Element[] => {
-    return rules.rules.map((rule: string, index: number) => {
+    return rules.howToPlay.map((rule: string, index: number) => {
       return (
         <p key={index} className="rules-txt">{rule}</p>
+      );
+    });
+  }
+
+  const getSloppyRules = (): JSX.Element[] => {
+    return rules["contest-rules"].map((rule: string, index: number) => {
+      const parsedRule = rule.split(":");
+      return (
+        <p key={index} className="context-rules"><span className="rule-header">{parsedRule[0]}:</span>{parsedRule[1]}</p>
       );
     });
   }
@@ -27,7 +36,11 @@ export const Rules: React.FC<IRulesProps> = (
       <Paper className="rules-paper">
         <p className="rules-heading">How to Play</p><hr />
         {getGameRules()}
-        </Paper>
+      </Paper>
+      <Paper className="sloppy-rules">
+        <h2>Contest Rules:</h2>
+        {getSloppyRules()}
+      </Paper>
     </div>
   );
 

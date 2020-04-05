@@ -6,8 +6,6 @@ public class LeaderBoardRow {
     private String name;
     private int score;
 
-    public LeaderBoardRow() { }
-
     public LeaderBoardRow(int rank, String name, int score) {
         this.rank = rank;
         this.name = name;

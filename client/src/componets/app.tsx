@@ -17,6 +17,7 @@ import { Footer } from "./footer/footer";
 import { About } from "./footer/about/about";
 import { Contact } from "./footer/contactus/contactus";
 import { PrivacyPolicy } from "./footer/policy/policy";
+import { TermsOfService } from "./footer/termofservice/termsofservice";
 
 require("./app.scss");
 
@@ -69,6 +70,10 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const getSitePolicy = (): JSX.Element => {
     return <PrivacyPolicy />;
   };
+
+  const getTermsOfService = (): JSX.Element => {
+    return <TermsOfService />;
+  };
   
   const handleFetch = (): JSX.Element => {
     if (fetching) return <Spinner className="loading" animation="grow" />;
@@ -88,6 +93,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
             <ReactRoute path="/rules" component={getRules} />
             <ReactRoute path="/contact" component={getContact} />
             <ReactRoute path="/privacy-policy" component={getSitePolicy} />
+            <ReactRoute path="/terms-of-service" component={getTermsOfService} />
             <Footer />
         </ReactRouter>
         
