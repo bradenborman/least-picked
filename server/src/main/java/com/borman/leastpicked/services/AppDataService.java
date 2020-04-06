@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class AppDataService {
 
@@ -25,8 +26,11 @@ public class AppDataService {
         appData.setUsersFirstTime(userService.insertUserIfNecessary(appData.getUserEmail(), appData.getUserName()));
         appData.setActiveSeason(gameSettings.getActiveSeason().getNickName());
         appData.setDaysLeftInCurrentSeason(gameSettings.getDaysLeftInCurrentSeason());
+
         userService.setUsersScore(appData, gameSettings.getActiveSeasonInt());
         selectionService.configGameOptions(appData);
+        selectionService.getLeadersPickForHint(appData);
+
         return ResponseEntity.ok(appData);
     }
 

@@ -1,7 +1,6 @@
 package com.borman.leastpicked.controllers;
 
 import com.borman.leastpicked.modls.AppData;
-import com.borman.leastpicked.modls.LeaderBoardRow;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
 import com.borman.leastpicked.modls.responses.LeaderBoardResponse;
 import com.borman.leastpicked.services.AppDataService;
@@ -11,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -41,7 +38,7 @@ public class ApiController {
 
     @GetMapping("/leaders")
     public ResponseEntity<LeaderBoardResponse> submitPick() {
-        return leaderboardService.getLeaderBoard();
+        return ResponseEntity.ok(leaderboardService.getLeaderBoard());
     }
 
 }

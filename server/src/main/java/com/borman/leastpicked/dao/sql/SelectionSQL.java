@@ -38,6 +38,13 @@ public class SelectionSQL {
             " ORDER BY points desc" +
             " Limit 10;";
 
+    public final static String getLeaders = "SELECT pick_history.player_id, players.email, players.full_name, count(*) as points FROM pick_history" +
+            " INNER JOIN players ON pick_history.player_id=players.player_id" +
+            " where season_id = :activeSeason and is_point = true" +
+            " GROUP BY players.email" +
+            " ORDER BY points desc" +
+            " Limit 1;";
+
     public static MapSqlParameterSource getMapSqlParameterForPicking(UpdateSelectionRequest request) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("today", DateManagerUtil.getTodaysDateString());

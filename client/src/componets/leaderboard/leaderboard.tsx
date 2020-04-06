@@ -55,7 +55,7 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
           <span className="seasonNickname">"{leaderboardData.activeSeason.nickName}"</span>
           <div className="seasonRange">Season Range<br />{leaderboardData.activeSeason.startDate} - {leaderboardData.activeSeason.endDate}</div>
           <p className="daysLeft">           
-            {leaderboardData.daysLeftInActiveSeason == 1 ? " Last day of the season!" : leaderboardData.daysLeftInActiveSeason + " days left in season." } 
+            {leaderboardData.daysLeftInActiveSeason == 1 ? " Last day of the season!" : leaderboardData.daysLeftInActiveSeason + " days left." } 
           </p>
         </div>
       )

@@ -65,6 +65,17 @@ export const MainScreen: React.FC<IMainScreenProps> = (
       }
   };
 
+  const getHint = (): JSX.Element | null => {
+   if(props.appdata?.hint != null)
+    return (
+      <span>
+        {props.appdata?.hint}
+      </span>
+    )
+    
+    return null
+  }
+
   const handleChange = (id: number) => {
     setShowFeedback(false); //clear out incase clicks stack
     if (data != null) {
@@ -138,7 +149,7 @@ export const MainScreen: React.FC<IMainScreenProps> = (
         <AppInfo appdata={props.appdata} />
         {getOptions()}
         <p className="hint">
-          * The current leader chose <b>option 3</b> for today's selection.
+          {getHint()}         
         </p>
       </div>
     </div>

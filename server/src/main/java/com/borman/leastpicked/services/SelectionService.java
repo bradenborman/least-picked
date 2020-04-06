@@ -4,6 +4,7 @@ import com.borman.leastpicked.config.GameSettings;
 import com.borman.leastpicked.dao.SelectionDao;
 import com.borman.leastpicked.modls.AppData;
 import com.borman.leastpicked.modls.GameOption;
+import com.borman.leastpicked.modls.User;
 import com.borman.leastpicked.modls.database.DetailedPickHistory;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
 import com.borman.leastpicked.utilities.DateManagerUtil;
@@ -42,7 +43,7 @@ public class SelectionService {
         return ResponseEntity.ok("Updated");
     }
 
-    public void configGameOptions(AppData appData) {
+    void configGameOptions(AppData appData) {
         GameOption gameOption1 = new GameOption(1, "Option 1", false);
         GameOption gameOption2 = new GameOption(2, "Option 2", false);
         GameOption gameOption3 = new GameOption(3, "Option 3", false);
@@ -73,8 +74,29 @@ public class SelectionService {
     }
 
 
-    public void clearTodaysWinnerAsCaution(String dateString) {
+    void clearTodaysWinnerAsCaution(String dateString) {
         logger.warn("Clearing now because of cron job is every 20 secs or so.");
         selectionDao.clearTodaysWinnerAsCaution(dateString);
     }
+
+    void getLeadersPickForHint(AppData appData) {
+        User leader = selectionDao.getLeader(gameSettings.getActiveSeasonInt());
+
+        if(leader != null) {
+            if(leader.getUserEmail().equals(appData.getUserEmail())) {
+                appData.setHint(null);
+            }else {
+                String leadersPick = selectionDao.getUsersSelectionToday(leader.getUserEmail());
+                if(leadersPick != null)
+                    appData.setHint(String.format(
+                            "Fun fact: The current leader chose option %s for today's selection.", selectionDao.getUsersSelectionToday(leader.getUserEmail())
+                    ));
+                else
+                    appData.setHint("Leader hasn't made their pick yet today.");
+            }
+        }
+
+
+    }
+
 }

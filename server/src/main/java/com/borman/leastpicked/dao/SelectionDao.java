@@ -3,7 +3,9 @@ package com.borman.leastpicked.dao;
 import com.borman.leastpicked.dao.sql.SelectionSQL;
 import com.borman.leastpicked.mappers.DetailedPickHistoryRowMapper;
 import com.borman.leastpicked.mappers.LeaderBoardRowMapper;
+import com.borman.leastpicked.mappers.LeaderMapper;
 import com.borman.leastpicked.modls.LeaderBoardRow;
+import com.borman.leastpicked.modls.User;
 import com.borman.leastpicked.modls.database.DetailedPickHistory;
 import com.borman.leastpicked.modls.request.UpdateSelectionRequest;
 import com.borman.leastpicked.utilities.DateManagerUtil;
@@ -87,4 +89,10 @@ public class SelectionDao {
             results.add(new LeaderBoardRow((results.size() + 1), "Position not qualified", 0));
         return results;
     }
+
+    public User getLeader(int activeSeason) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("activeSeason", activeSeason);
+       return namedParameterJdbcTemplate.query(SelectionSQL.getLeaders, params, new LeaderMapper()).get(0);
+    }
+
 }

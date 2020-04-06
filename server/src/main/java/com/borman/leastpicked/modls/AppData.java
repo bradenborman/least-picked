@@ -13,6 +13,7 @@ public class AppData {
 
     private String activeSeason;
     private int daysLeftInCurrentSeason;
+    private String hint;
 
     public String getUserEmail() {
         return userEmail;
@@ -79,4 +80,11 @@ public class AppData {
         this.daysLeftInCurrentSeason = daysLeftInCurrentSeason;
     }
 
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
 }

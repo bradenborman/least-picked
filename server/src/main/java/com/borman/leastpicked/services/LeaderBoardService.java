@@ -4,7 +4,6 @@ import com.borman.leastpicked.config.GameSettings;
 import com.borman.leastpicked.dao.SelectionDao;
 import com.borman.leastpicked.modls.builders.LeaderBoardResponseBuilder;
 import com.borman.leastpicked.modls.responses.LeaderBoardResponse;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,9 +17,9 @@ public class LeaderBoardService {
         this.gameSettings = gameSettings;
     }
 
-    public ResponseEntity<LeaderBoardResponse> getLeaderBoard() {
+    public LeaderBoardResponse getLeaderBoard() {
 
-        return ResponseEntity.ok(LeaderBoardResponseBuilder
+        return LeaderBoardResponseBuilder
                 .aLeaderBoardResponse()
                 .withActiveSeason(
                         gameSettings.getActiveSeason()
@@ -31,7 +30,7 @@ public class LeaderBoardService {
                 .withTopTenLeaders(
                         selectionDao.getTopTenLeadersThisSeason(gameSettings.getActiveSeasonInt())
                 )
-                .build());
+                .build();
     }
 
 }
